@@ -1,0 +1,15 @@
+section.grid {
+    display: flex;
+    flex-wrap: wrap;    
+    margin: 2em;
+}
+
+.grid .grid-item {
+    flex-grow: 1;
+    min-width: 25%; 
+    min-height: 50px;
+    margin: 0.8em;
+    padding: 0.4em 0.8em;
+    background-color: #fff;
+    box-sizing: border-box; 
+}

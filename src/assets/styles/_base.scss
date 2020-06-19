@@ -1,0 +1,22 @@
+@import './Core/Reset.scss';
+@import './Core/grid.scss';
+@import './Tools/fonts.scss';
+@import './Tools/mixins.scss';
+@import './Tools/variables.scss';
+@import './Tools/functions.scss';
+@import './Tools/icon.scss';
+
+* {
+    box-sizing: border-box;
+}
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+    margin: 0;
+    background-color: #F4F6FC;
+    padding: 0;
+    color: #000;
+    font-size: 16px;
+}

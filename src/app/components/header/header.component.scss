@@ -1,0 +1,36 @@
+.topbar {
+    background-color: white;
+    height: 4em;
+    padding: 0em 6em;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.topbar img.logo {
+    height: 1.4em;
+}
+
+.topbar .topbar-nav-group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.topbar .topbar-nav-group > * {
+    padding: 0em 0.4em;
+}
+
+.topbar .topbar-nav-group > .avatar > img {
+    height: 1.4em;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .topbar .topbar-nav-group > * {
+        display: none;
+    }
+}

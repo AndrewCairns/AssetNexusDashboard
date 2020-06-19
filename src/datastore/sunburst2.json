@@ -1,0 +1,84 @@
+{
+    "name": "Second EXAMPLE",
+    "children": [
+     {
+      "name": "Assets",
+      "children": [
+       {
+        "name": "Properties",
+        "children": [
+         {"name": "12a Ballymacormick Rd", "value": 110000},
+         {"name": "21 Bangor Ave", "value": 340000},
+         {"name": "84 Lisburn Drive", "value": 12000},
+         {"name": "54 Manor Hill", "value": 393000}
+        ]
+       },
+       {
+        "name": "Vehicles",
+        "children": [
+         {"name": "VW Golf", "value": 18534},
+         {"name": "BMW M3", "value": 10731},
+         {"name": "Renault Megane", "value": 12840},
+         {"name": "Porche Boxter", "value": 127840}
+        ]
+       },
+       {
+        "name": "Stocks",
+        "children": [
+            {"name": "Apple", "value": 17074},
+            {"name": "Google", "value": 1023}
+        ]
+       }
+      ]
+     },
+     {
+      "name": "Insurance",
+      "children": [
+       {
+        "name": "Life",
+        "children": [
+         {"name": "Start date: 20/12/1962", "value": 10083},
+         {"name": "Start date: 20/12/1976", "value": 14000},
+         {"name": "Start date: 20/12/1984", "value": 20000},
+         {"name": "Start date: 20/12/1991", "value": 30000}
+        ]
+       },
+       {"name": "Building", "value": 30000}
+      ]
+     },
+     {
+      "name": "Debts",
+      "children": [
+       {
+        "name": "Mortgages",
+        "children": [
+         {"name": "12a Ballymacormick Rd", "value": 10000},
+         {"name": "21 Bangor Ave", "value": 19000},
+         {"name": "84 Lisburn Drive", "value": 147000},
+         {"name": "54 Manor Hill", "value": 195000}
+        ]
+       },
+       {
+        "name": "Credit card",
+        "children": [
+         {"name": "Danske", "value": 121000},
+         {"name": "Halifax", "value": 221000},
+         {"name": "Santander", "value": 31000},
+         {"name": "Monzo", "value": 9000}
+        ]
+       },
+       {
+        "name": "Bank Loans",
+        "children": [
+         {"name": "Danske", "value": 43000},
+         {"name": "Halifax", "value": 49000},
+         {"name": "Student Loan", "value": 49000}
+        ]
+       },
+       {"name": "Personal", "value": 46000},
+       {"name": "Auto Loan", "value": 43322}
+      ]
+     }
+    ]
+   }
+   
