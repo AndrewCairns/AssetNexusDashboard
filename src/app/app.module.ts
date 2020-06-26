@@ -11,6 +11,8 @@ import { SunburstChartComponent } from './components/sunburst-chart/sunburst-cha
 import { OverviewComponent } from './views/overview/overview.component';
 import { TimelineComponent } from './views/timeline/timeline.component';
 import { LineChartComponent } from './components/line-chart/line-chart.component';
+import { SelectComponent } from './components/select/select.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { LineChartComponent } from './components/line-chart/line-chart.component
     SunburstChartComponent,
     OverviewComponent,
     TimelineComponent,
-    LineChartComponent
+    LineChartComponent,
+    SelectComponent
   ],
   exports: [
     IconComponent
@@ -29,7 +32,8 @@ import { LineChartComponent } from './components/line-chart/line-chart.component
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
