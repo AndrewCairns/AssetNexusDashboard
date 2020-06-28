@@ -2,8 +2,8 @@
     <div class="grid-item">
         <h4>Timeline</h4>     
         <div class="chart">
-            <app-line-chart [ChartData]="timelineData" [transitionTime]="100"></app-line-chart>
-            <app-select></app-select>
+            <app-select (selectboxValueSelected)="childEventClicked($event)" ></app-select>
+            <app-line-chart [Selection]="clickedEvent" [ChartData]="timelineData" [transitionTime]="100"></app-line-chart>
         </div>
     </div>
 </section>

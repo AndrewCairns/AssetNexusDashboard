@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import data from './../../../datastore/linechartData.json';
 import { element } from 'protractor';
 
@@ -9,15 +9,20 @@ import { element } from 'protractor';
 })
 export class SelectComponent implements OnInit {
   
-  objectKeys = Object.keys;
+  @Output() selectboxValueSelected = new EventEmitter();
+  selectboxValue = 'Please select an item';
 
-  selectArray = [];
-  selectedValue = null;
   items = ( data );
-  outputData;
   selectbox_items = [];
 
+
+  objectKeys = Object.keys;
+
   constructor() {}
+
+  filter(){
+    this.selectboxValueSelected.emit(this.selectboxValue)
+  }
 
   ngOnInit(): void {
 

@@ -8,10 +8,15 @@ import data from './../../../datastore/simpleLineChart.json';
 })
 export class TimelineComponent implements OnInit {
   timelineData = data;
-  
+  public clickedEvent: Event;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  childEventClicked(event) {
+    this.clickedEvent = event;
   }
 
 }

@@ -108,23 +108,23 @@
                     "key": "Pension",
                     "values": [
                         {
-                            "value": 36,
+                            "value": 56,
                             "date": "12/9/2015"
                         },
                         {
-                            "value": 9,
+                            "value": 59,
                             "date": "5/1/2016"
                         },
                         {
-                            "value": 37,
+                            "value": 17,
                             "date": "10/30/2017"
                         },
                         {
-                            "value": 37,
+                            "value": 27,
                             "date": "4/18/2019"
                         },
                         {
-                            "value": 39,
+                            "value": 30,
                             "date": "2/6/2020"
                         }
                     ]
@@ -158,23 +158,23 @@
                     "key": "Auto 2",
                     "values": [
                         {
-                            "value": 36,
+                            "value": 12,
                             "date": "12/9/2015"
                         },
                         {
-                            "value": 9,
+                            "value": 74,
                             "date": "5/1/2016"
                         },
                         {
-                            "value": 37,
+                            "value": 54,
                             "date": "10/30/2017"
                         },
                         {
-                            "value": 37,
+                            "value": 34,
                             "date": "4/18/2019"
                         },
                         {
-                            "value": 39,
+                            "value": 59,
                             "date": "2/6/2020"
                         }
                     ]
