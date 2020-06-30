@@ -55,25 +55,40 @@ export class LineChartComponent implements OnInit {
 
     var yScale = d3.scaleLinear()
         .range([height - 20, 20])
-        .domain([0, 80]);
+        .domain( d3.extent(data.Assets[0][displayGroup][0].values, d => d.value) );
+
+        console.log(d3.extent(data.Assets[0][displayGroup][0].values, d => d.value))
 
     var lineGen = d3.line()
         .x(d => xScale(parse(d.date)))
         .y(d => yScale(d.value));
 
-    var valuePaths = d3.selectAll(".lineElements")
+    var valuePaths = d3.select("#linechart g.lines").selectAll(".lineElements")
 
     valuePaths.data(data.Assets[0][displayGroup])
-        .join()
-          .transition(t)
-          .attr("d", d => lineGen(d.values))
-          .attr("fill", "none")
-          .attr("stroke", (d, i) => colors(i))
-    
-
-
-
+        .join(
+          enter => enter.append("path").attr("class", "lineElements")
+              .attr("fill", "none")
+              .attr("d", d => lineGen(d.values) )
+              .attr("stroke", (d, i) => colors(i))
+              .attr("stroke-dasharray", 1000 + " " + 1000)
+              .attr("stroke-dashoffset", 1000)
+            .call(enter => enter.transition(t) 
+              .attr("stroke-dashoffset", 0)
+          ),
+          update => update
+              .attr("stroke", (d, i) => colors(i))
+            .call(update => update.transition(t)           
+              .attr("d", d => lineGen(d.values) )
+            ),
+          exit => exit
+            .call(exit => exit.transition(t) )
+              .remove()
+        )
+  
     console.log(data.Assets[0][displayGroup].length)
+
+    var gY = svg.select("g.yaxis").call(d3.axisLeft(yScale));
 
   }
 
@@ -110,16 +125,15 @@ export class LineChartComponent implements OnInit {
 
     var yScale = d3.scaleLinear()
         .range([height - 20, 20])
-        .domain([0, 80]);
+        .domain(d3.extent(data.Assets[0][displayGroup][0].values, d => d.value));
 
     var lineGen = d3.line()
         .x(d => xScale(parse(d.date)))
         .y(d => yScale(d.value));
 
   
-    var lines = svg.append("g")
-        .attr('class', 'group')
-        .selectAll("path")
+    var lines = svg.append("g").attr("class", "lines")
+        .selectAll(".lineElements")
         .data(data.Assets[0][displayGroup])
         .join("path")
           .attr("d", d => lineGen(d.values))
@@ -130,7 +144,7 @@ export class LineChartComponent implements OnInit {
 
     var gX = svg.append("g").attr("transform", "translate(0," + (height - 20) + ")").call(d3.axisBottom(xScale));
 
-    var gY = svg.append("g").attr("transform", "translate(30,0)").call(d3.axisLeft(yScale));
+    var gY = svg.append("g").attr("class", "yaxis").attr("transform", "translate(30,0)").call(d3.axisLeft(yScale));
 
   }
 
