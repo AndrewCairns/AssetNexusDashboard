@@ -27,6 +27,12 @@ export class LineChartComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+   
+    var t = d3.transition()
+      .duration(750)
+      .ease(d3.easeLinear);
+
+
     var data = this.ChartData;
     var displayGroup;
 
@@ -36,12 +42,44 @@ export class LineChartComponent implements OnInit {
       displayGroup = 'Property';
     }
 
-    this.chart(data, displayGroup);
+    var margin = {top: 30, right: 150, bottom: 80, left: 60};
+    var width = 1024 - margin.left - margin.right;
+    var height = 768 - margin.top - margin.bottom;
+    var parse = d3.timeParse("%m/%d/%Y");
+    var colors = d3.scaleOrdinal(d3.schemeCategory10);
+    var svg = d3.select("#linechart")
+
+    var xScale = d3.scaleTime()
+        .range([30, width - 20])
+        .domain(d3.extent(data.Assets[0][displayGroup][0].values, d => parse(d.date)));
+
+    var yScale = d3.scaleLinear()
+        .range([height - 20, 20])
+        .domain([0, 80]);
+
+    var lineGen = d3.line()
+        .x(d => xScale(parse(d.date)))
+        .y(d => yScale(d.value));
+
+    var valuePaths = d3.selectAll(".lineElements")
+
+    valuePaths.data(data.Assets[0][displayGroup])
+        .join()
+          .transition(t)
+          .attr("d", d => lineGen(d.values))
+          .attr("fill", "none")
+          .attr("stroke", (d, i) => colors(i))
+    
+
+
+
+    console.log(data.Assets[0][displayGroup].length)
+
   }
 
 
   ngOnInit() {
-
+  
     var data = this.ChartData;
     var displayGroup = this.Selection || 'Property';
 
@@ -78,17 +116,17 @@ export class LineChartComponent implements OnInit {
         .x(d => xScale(parse(d.date)))
         .y(d => yScale(d.value));
 
-    var lines = svg.selectAll(".foo")
+  
+    var lines = svg.append("g")
+        .attr('class', 'group')
+        .selectAll("path")
         .data(data.Assets[0][displayGroup])
-
-        lines.enter().append("path")
+        .join("path")
           .attr("d", d => lineGen(d.values))
           .attr("fill", "none")
-          .attr("stroke", (d, i) => colors(i));
+          .attr("stroke", (d, i) => colors(i))
+          .attr('class', 'lineElements');
 
-        lines.transition();
-
-        lines.exit().remove();
 
     var gX = svg.append("g").attr("transform", "translate(0," + (height - 20) + ")").call(d3.axisBottom(xScale));
 
