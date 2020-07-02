@@ -49,15 +49,29 @@ export class LineChartComponent implements OnInit {
     var colors = d3.scaleOrdinal(d3.schemeCategory10);
     var svg = d3.select("#linechart")
 
+    var domain = [];
+    data.Assets[0][displayGroup].map(displayGroupItems => {
+      displayGroupItems.values.forEach(displayGroupItemValues => {
+        domain.push(displayGroupItemValues.value)
+      });
+    })
+
+
     var xScale = d3.scaleTime()
         .range([30, width - 20])
         .domain(d3.extent(data.Assets[0][displayGroup][0].values, d => parse(d.date)));
 
+
     var yScale = d3.scaleLinear()
         .range([height - 20, 20])
-        .domain( d3.extent(data.Assets[0][displayGroup][0].values, d => d.value) );
+        .domain( 
+          d3.extent(domain)
+        ).nice();
 
-        console.log(d3.extent(data.Assets[0][displayGroup][0].values, d => d.value))
+
+
+
+
 
     var lineGen = d3.line()
         .x(d => xScale(parse(d.date)))
@@ -71,10 +85,7 @@ export class LineChartComponent implements OnInit {
               .attr("fill", "none")
               .attr("d", d => lineGen(d.values) )
               .attr("stroke", (d, i) => colors(i))
-              .attr("stroke-dasharray", 1000 + " " + 1000)
-              .attr("stroke-dashoffset", 1000)
             .call(enter => enter.transition(t) 
-              .attr("stroke-dashoffset", 0)
           ),
           update => update
               .attr("stroke", (d, i) => colors(i))
@@ -86,7 +97,6 @@ export class LineChartComponent implements OnInit {
               .remove()
         )
   
-    console.log(data.Assets[0][displayGroup].length)
 
     var gY = svg.select("g.yaxis").call(d3.axisLeft(yScale));
 
@@ -103,12 +113,17 @@ export class LineChartComponent implements OnInit {
   }
 
   chart(data, displayGroup) {
-    console.log(data.Assets[0][displayGroup][0].values)
 
     var margin = {top: 30, right: 150, bottom: 80, left: 60};
     var width = 1024 - margin.left - margin.right;
     var height = 768 - margin.top - margin.bottom;
-    
+    var domain = [];
+    data.Assets[0][displayGroup].map(displayGroupItems => {
+      displayGroupItems.values.forEach(displayGroupItemValues => {
+        domain.push(displayGroupItemValues.value)
+      });
+    })
+
     var svg = d3.select("#linechart")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
@@ -123,9 +138,11 @@ export class LineChartComponent implements OnInit {
         .range([30, width - 20])
         .domain(d3.extent(data.Assets[0][displayGroup][0].values, d => parse(d.date)));
 
-    var yScale = d3.scaleLinear()
+        var yScale = d3.scaleLinear()
         .range([height - 20, 20])
-        .domain(d3.extent(data.Assets[0][displayGroup][0].values, d => d.value));
+        .domain( 
+          d3.extent(domain)
+        ).nice();
 
     var lineGen = d3.line()
         .x(d => xScale(parse(d.date)))
