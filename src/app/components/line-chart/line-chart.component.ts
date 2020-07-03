@@ -42,6 +42,8 @@ export class LineChartComponent implements OnInit {
       displayGroup = 'Property';
     }
 
+    console.log(data.Assets[0][displayGroup])
+
     var margin = {top: 30, right: 150, bottom: 80, left: 60};
     var width = 1024 - margin.left - margin.right;
     var height = 768 - margin.top - margin.bottom;

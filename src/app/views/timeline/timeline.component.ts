@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import data from './../../../datastore/simpleLineChart.json';
+import data2 from './../../../datastore/simpleLineChart.json';
+import data from './../../../datastore/linechartData.json';
 
 @Component({
   selector: 'app-timeline',

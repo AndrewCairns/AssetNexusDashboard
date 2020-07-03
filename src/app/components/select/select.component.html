@@ -1,5 +1,9 @@
 <h1>My Application</h1>
 <select [(ngModel)]="selectboxValue" (change)="filter()">
     <option selected="selected" disabled value="Please select an item">Please select an item</option>
-    <option *ngFor="let key of selectbox_items" [ngValue]="key">{{key}}</option>
+    <ng-container *ngFor="let item of this.items | keyvalue">
+        <optgroup *ngFor="let item2 of item.value" label="{{item.key}}">
+            <option *ngFor="let item3 of item2 | keyvalue"> {{item3.key}}</option>
+        </optgroup>
+    </ng-container>
 </select>
