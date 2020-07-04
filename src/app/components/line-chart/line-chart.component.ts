@@ -34,15 +34,19 @@ export class LineChartComponent implements OnInit {
 
 
     var data = this.ChartData;
-    var displayGroup;
 
     if (typeof this.Selection === 'string') {
-      displayGroup = this.Selection.trim();
+      var displayPath = this.Selection.split('/');
+      var dataGroup =  displayPath[0];
+      var dataBranch = displayPath[1];
     } else {
-      displayGroup = 'Property';
+      var dataGroup = 'Assets';
+      var dataBranch = 'Property';
     }
 
-    console.log(data.Assets[0][displayGroup])
+
+    console.log(dataGroup, dataBranch)
+
 
     var margin = {top: 30, right: 150, bottom: 80, left: 60};
     var width = 1024 - margin.left - margin.right;
@@ -52,7 +56,7 @@ export class LineChartComponent implements OnInit {
     var svg = d3.select("#linechart")
 
     var domain = [];
-    data.Assets[0][displayGroup].map(displayGroupItems => {
+    data[dataGroup][0][dataBranch].map(displayGroupItems => {
       displayGroupItems.values.forEach(displayGroupItemValues => {
         domain.push(displayGroupItemValues.value)
       });
@@ -61,7 +65,7 @@ export class LineChartComponent implements OnInit {
 
     var xScale = d3.scaleTime()
         .range([30, width - 20])
-        .domain(d3.extent(data.Assets[0][displayGroup][0].values, d => parse(d.date)));
+        .domain(d3.extent(data[dataGroup][0][dataBranch][0].values, d => parse(d.date)));
 
 
     var yScale = d3.scaleLinear()
@@ -81,7 +85,7 @@ export class LineChartComponent implements OnInit {
 
     var valuePaths = d3.select("#linechart g.lines").selectAll(".lineElements")
 
-    valuePaths.data(data.Assets[0][displayGroup])
+    valuePaths.data(data[dataGroup][0][dataBranch])
         .join(
           enter => enter.append("path").attr("class", "lineElements")
               .attr("fill", "none")
@@ -108,19 +112,19 @@ export class LineChartComponent implements OnInit {
   ngOnInit() {
   
     var data = this.ChartData;
-    var displayGroup = this.Selection || 'Property';
+    var dataGroup =  'Assets';
+    var dataBranch = 'Property';
 
-    this.chart(data, displayGroup);
- 
+    this.chart(data, dataGroup, dataBranch);
   }
 
-  chart(data, displayGroup) {
+  chart(data, dataGroup, dataBranch) {
 
     var margin = {top: 30, right: 150, bottom: 80, left: 60};
     var width = 1024 - margin.left - margin.right;
     var height = 768 - margin.top - margin.bottom;
     var domain = [];
-    data.Assets[0][displayGroup].map(displayGroupItems => {
+    data[dataGroup][0][dataBranch].map(displayGroupItems => {
       displayGroupItems.values.forEach(displayGroupItemValues => {
         domain.push(displayGroupItemValues.value)
       });
@@ -138,7 +142,7 @@ export class LineChartComponent implements OnInit {
 
     var xScale = d3.scaleTime()
         .range([30, width - 20])
-        .domain(d3.extent(data.Assets[0][displayGroup][0].values, d => parse(d.date)));
+        .domain(d3.extent(data[dataGroup][0][dataBranch][0].values, d => parse(d.date)));
 
         var yScale = d3.scaleLinear()
         .range([height - 20, 20])
@@ -153,7 +157,7 @@ export class LineChartComponent implements OnInit {
   
     var lines = svg.append("g").attr("class", "lines")
         .selectAll(".lineElements")
-        .data(data.Assets[0][displayGroup])
+        .data(data.Assets[0][dataBranch])
         .join("path")
           .attr("d", d => lineGen(d.values))
           .attr("fill", "none")
