@@ -18,70 +18,139 @@ export class LineChartComponent implements OnInit {
   //Initialisers
   hostElement;
 
-  
 
 
-  
+  //Chart Config
+  margin = {top: 30, right: 150, bottom: 80, left: 60};
+  width = 1024 - this.margin.left - this.margin.right;
+  height = 768 - this.margin.top - this.margin.bottom;
+  parse = d3.timeParse("%m/%d/%Y");
+  colors = d3.scaleOrdinal(d3.schemeCategory10);
+  svg = d3.select("#linechart")
+  Ydomain = [];
+  Xdomain = [];
+  yScale;
+  xScale;
+  yAxis;
+  xAxis;
+  lineGen = d3.line()
+      .x(d => this.xScale(this.parse(d.date)))
+      .y(d => this.yScale(d.value));  
+  t = d3.transition()
+    .duration(7050)
+    .ease(d3.easeLinear);
+
+
+  // Data
+  data = this.ChartData;
+  displayPath;
+  dataGroup =  'Assets';
+  dataBranch = 'Property';
+
+
+
+
+
+
   constructor(private elRef: ElementRef) {
     this.hostElement = this.elRef.nativeElement;
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-   
-    var t = d3.transition()
-      .duration(750)
-      .ease(d3.easeLinear);
 
 
-    var data = this.ChartData;
+
+
+
+  ngOnChanges(changes) {
 
     if (typeof this.Selection === 'string') {
-      var displayPath = this.Selection.split('/');
-      var dataGroup =  displayPath[0];
-      var dataBranch = displayPath[1];
+      this.displayPath = this.Selection.split('/');
+      this.dataGroup =  this.displayPath[0];
+      this.dataBranch = this.displayPath[1];
     } else {
-      var dataGroup = 'Assets';
-      var dataBranch = 'Property';
+      this.dataGroup = 'Assets';
+      this.dataBranch = 'Property';
     }
+    
+    this.updateChart(this.ChartData, this.dataGroup, this.dataBranch )
+  }
 
 
-    console.log(dataGroup, dataBranch)
+
+  ngOnInit() {
+    this.createChart(this.ChartData, this.dataGroup, this.dataBranch);
+  }
 
 
-    var margin = {top: 30, right: 150, bottom: 80, left: 60};
-    var width = 1024 - margin.left - margin.right;
-    var height = 768 - margin.top - margin.bottom;
-    var parse = d3.timeParse("%m/%d/%Y");
-    var colors = d3.scaleOrdinal(d3.schemeCategory10);
-    var svg = d3.select("#linechart")
 
-    var domain = [];
+
+  createChart(data, dataGroup, dataBranch) {
+
+    // Domain scale function - TODO
     data[dataGroup][0][dataBranch].map(displayGroupItems => {
       displayGroupItems.values.forEach(displayGroupItemValues => {
-        domain.push(displayGroupItemValues.value)
+        this.Ydomain.push(displayGroupItemValues.value)
+        this.Xdomain.push( this.parse(displayGroupItemValues.date));
       });
     })
 
 
-    var xScale = d3.scaleTime()
-        .range([30, width - 20])
-        .domain(d3.extent(data[dataGroup][0][dataBranch][0].values, d => parse(d.date)));
+    const svg = d3.select("#linechart")
+      .attr("width", this.width + this.margin.left + this.margin.right)
+      .attr("height", this.height + this.margin.top + this.margin.bottom)
+      .append("g")
+      .attr("class", "lines")
+      .attr("transform", "translate(" + this.margin.left + ", " + this.margin.top + ")");
+
+    this.xScale = d3.scaleTime()
+      .range([30, this.width - 20])
+      .domain(d3.extent(this.Xdomain));
+
+    this.yScale = d3.scaleLinear()
+      .range([this.height - 20, 20])
+      .domain( d3.extent(this.Ydomain) )
+      .nice();
+
+    this.xAxis = svg.append("g").attr("class", "xaxis").attr("transform", "translate(0," + (this.height - 20) + ")").call(d3.axisBottom(this.xScale));
+    this.yAxis = svg.append("g").attr("class", "yaxis").attr("transform", "translate(30,0)").call(d3.axisLeft(this.yScale));
+  
+
+    // Applys data to plot area
+    this.updateChart(data, dataGroup, dataBranch)
+
+  }
 
 
-    var yScale = d3.scaleLinear()
-        .range([height - 20, 20])
-        .domain( 
-          d3.extent(domain)
-        ).nice();
+
+
+  updateChart(data, dataGroup, dataBranch) {
+    this.Ydomain = [];
+
+    // Domain scale function - TODO
+    data[dataGroup][0][dataBranch].map(displayGroupItems => {
+      displayGroupItems.values.forEach(displayGroupItemValues => {
+        this.Ydomain.push(displayGroupItemValues.value)
+        this.Xdomain.push( this.parse(displayGroupItemValues.date));
+      });
+    })
+
+    this.yScale = d3.scaleLinear()
+      .range([this.height - 20, 20])
+      .domain( d3.extent(this.Ydomain) );
+    
+    this.xScale = d3.scaleTime()
+      .range([30, this.width - 20])
+      .domain(d3.extent(this.Xdomain));
+
+    d3.select("g.yaxis").transition(this.t)
+      .call(d3.axisLeft(this.yScale));
+    d3.select("g.xaxis").transition(this.t)
+      .call(d3.axisBottom(this.xScale));
+
+      
 
 
 
-
-
-
-    var lineGen = d3.line()
-        .x(d => xScale(parse(d.date)))
-        .y(d => yScale(d.value));
 
     var valuePaths = d3.select("#linechart g.lines").selectAll(".lineElements")
 
@@ -89,88 +158,24 @@ export class LineChartComponent implements OnInit {
         .join(
           enter => enter.append("path").attr("class", "lineElements")
               .attr("fill", "none")
-              .attr("d", d => lineGen(d.values) )
-              .attr("stroke", (d, i) => colors(i))
-            .call(enter => enter.transition(t) 
+              .attr("d", d => this.lineGen(d.values) )
+              .attr("stroke", (d, i) => this.colors(i))
+            .call(enter => enter.transition(this.t) 
           ),
           update => update
-              .attr("stroke", (d, i) => colors(i))
-            .call(update => update.transition(t)           
-              .attr("d", d => lineGen(d.values) )
+              .attr("stroke", (d, i) => this.colors(i))
+            .call(update => update.transition(this.t)           
+              .attr("d", d => this.lineGen(d.values) )
             ),
           exit => exit
-            .call(exit => exit.transition(t) )
+            .call(exit => exit.transition(this.t) )
               .remove()
         )
-  
 
-    var gY = svg.select("g.yaxis").call(d3.axisLeft(yScale));
+ 
+
 
   }
-
-
-  ngOnInit() {
-  
-    var data = this.ChartData;
-    var dataGroup =  'Assets';
-    var dataBranch = 'Property';
-
-    this.chart(data, dataGroup, dataBranch);
-  }
-
-  chart(data, dataGroup, dataBranch) {
-
-    var margin = {top: 30, right: 150, bottom: 80, left: 60};
-    var width = 1024 - margin.left - margin.right;
-    var height = 768 - margin.top - margin.bottom;
-    var domain = [];
-    data[dataGroup][0][dataBranch].map(displayGroupItems => {
-      displayGroupItems.values.forEach(displayGroupItemValues => {
-        domain.push(displayGroupItemValues.value)
-      });
-    })
-
-    var svg = d3.select("#linechart")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-      .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
-
-    var colors = d3.scaleOrdinal(d3.schemeCategory10);
-
-    var parse = d3.timeParse("%m/%d/%Y");
-
-    var xScale = d3.scaleTime()
-        .range([30, width - 20])
-        .domain(d3.extent(data[dataGroup][0][dataBranch][0].values, d => parse(d.date)));
-
-        var yScale = d3.scaleLinear()
-        .range([height - 20, 20])
-        .domain( 
-          d3.extent(domain)
-        ).nice();
-
-    var lineGen = d3.line()
-        .x(d => xScale(parse(d.date)))
-        .y(d => yScale(d.value));
-
-  
-    var lines = svg.append("g").attr("class", "lines")
-        .selectAll(".lineElements")
-        .data(data.Assets[0][dataBranch])
-        .join("path")
-          .attr("d", d => lineGen(d.values))
-          .attr("fill", "none")
-          .attr("stroke", (d, i) => colors(i))
-          .attr('class', 'lineElements');
-
-
-    var gX = svg.append("g").attr("transform", "translate(0," + (height - 20) + ")").call(d3.axisBottom(xScale));
-
-    var gY = svg.append("g").attr("class", "yaxis").attr("transform", "translate(30,0)").call(d3.axisLeft(yScale));
-
-  }
-
 
 
 
