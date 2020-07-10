@@ -1,8 +1,7 @@
 .topbar {
     background-color: white;
     height: 4em;
-    padding: 0em 6em;
-
+    padding: 0em 2em 0em 7em;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -10,7 +9,7 @@
     align-items: center;
 }
 .topbar img.logo {
-    height: 1.4em;
+    height: 1.6em;
 }
 
 .topbar .topbar-nav-group {
@@ -25,7 +24,7 @@
 }
 
 .topbar .topbar-nav-group > .avatar > img {
-    height: 1.4em;
+    height: 1.8em;
 }
 
 

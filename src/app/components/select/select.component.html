@@ -1,4 +1,3 @@
-<h1>My Application</h1>
 <select [(ngModel)]="selectboxValue" (change)="filter()">
     <option selected="selected" disabled value="Please select an item">Please select an item</option>
     <ng-container *ngFor="let item of this.items | keyvalue">

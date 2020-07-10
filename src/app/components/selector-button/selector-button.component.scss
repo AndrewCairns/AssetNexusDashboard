@@ -1,0 +1,10 @@
+// Shared
+@import "../../../assets/styles/Tools/variables";
+
+button {
+    border: none;
+    border-radius: 5px;
+    border-left: 2px solid $brand-color--alt;
+    background-color: #fff;
+    padding: 10px 20px;
+}
