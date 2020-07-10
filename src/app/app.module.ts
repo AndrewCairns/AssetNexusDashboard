@@ -13,6 +13,7 @@ import { TimelineComponent } from './views/timeline/timeline.component';
 import { LineChartComponent } from './components/line-chart/line-chart.component';
 import { SelectComponent } from './components/select/select.component';
 import { FormsModule } from '@angular/forms';
+import { SelectorButtonComponent } from './components/selector-button/selector-button.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FormsModule } from '@angular/forms';
     OverviewComponent,
     TimelineComponent,
     LineChartComponent,
-    SelectComponent
+    SelectComponent,
+    SelectorButtonComponent
   ],
   exports: [
     IconComponent

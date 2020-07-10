@@ -1,9 +1,13 @@
 <div class="container">
-    <app-sidebar></app-sidebar>
+    <app-header></app-header>
     <div class="main">
-        <app-header></app-header>
-
-        <router-outlet></router-outlet>
-
+        <div class="main-body">
+            <div class="row">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+        <nav>
+            <app-sidebar></app-sidebar>
+        </nav>
     </div>
 </div>

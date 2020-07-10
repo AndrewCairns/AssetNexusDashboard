@@ -2,7 +2,7 @@
 @import './Core/grid.scss';
 @import './Tools/fonts.scss';
 @import './Tools/mixins.scss';
-@import './Tools/variables.scss';
+@import './Tools/_variables.scss';
 @import './Tools/functions.scss';
 @import './Tools/icon.scss';
 
@@ -19,4 +19,9 @@ body {
     padding: 0;
     color: #000;
     font-size: 16px;
+}
+
+.dashboard-module {
+    background-color: #fff;
+    padding: 25px;
 }

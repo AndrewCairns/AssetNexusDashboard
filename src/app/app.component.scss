@@ -1,10 +1,31 @@
 .container {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    height: 100%;
+    min-height: 100vh;
+    flex-direction: column;  
 }
 
 .main {
-    flex-grow: 4;
+    display: flex;
+    flex: 1;  
+    flex-direction: column;
 }
+
+nav {
+    order: -1;    /* put the nav on the left */
+}
+
+
+@media (min-width: 768px) {
+    .main {
+      flex-direction: row;
+      flex: 1;
+    }
+    .main .main-body {
+      flex: 1;
+      padding: 50px;
+    }
+    .nav {
+      flex: 0 0 12em;     /* 12em is the width of the columns */    
+    }
+  }
+  
