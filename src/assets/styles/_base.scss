@@ -25,3 +25,32 @@ body {
     background-color: #fff;
     padding: 25px;
 }
+
+.box-row,
+.box-first,
+.box-nested,
+.box-large,
+.box {
+  box-sizing: border-box;
+  position: relative;
+  box-sizing: border-box;
+  min-height: 1rem;
+  margin-bottom: 0;
+  background: #007FFF;
+  border: 1px solid #FFF;
+  border-radius: 2px;
+  overflow: hidden;
+  text-align: center;
+  color: white;
+}
+.box-row {
+  margin-bottom: 1rem;
+}
+.box-first {
+  background: #0066CC;
+  border-color: #007FFF;
+}
+.box-nested {
+  background: #003366;
+  border-color: #007FFF;
+}
