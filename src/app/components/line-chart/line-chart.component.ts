@@ -24,6 +24,8 @@ export class LineChartComponent implements OnInit {
   margin = {top: 30, right: 150, bottom: 80, left: 60};
   width = 1024 - this.margin.left - this.margin.right;
   height = 768 - this.margin.top - this.margin.bottom;
+  viewBoxWidth = 200;
+  viewBoxHeight = 100;
   parse = d3.timeParse("%m/%d/%Y");
   colors = d3.scaleOrdinal(d3.schemeCategory10);
   svg = d3.select("#linechart")
@@ -78,6 +80,13 @@ export class LineChartComponent implements OnInit {
 
 
   ngOnInit() {
+
+    console.log(this.svg.width);
+
+    console.log('height---' + this.hostElement.offsetHeight);  //<<<===here
+    console.log('width---' + this.hostElement.offsetWidth);    //<<<===here
+
+
     this.createChart(this.ChartData, this.dataGroup, this.dataBranch);
   }
 
@@ -96,8 +105,9 @@ export class LineChartComponent implements OnInit {
 
 
     const svg = d3.select("#linechart")
-      .attr("width", this.width + this.margin.left + this.margin.right)
-      .attr("height", this.height + this.margin.top + this.margin.bottom)
+      .attr('width', '100%')
+      .attr('height', '100%')
+      .attr('viewBox', '0 0 ' + 1024 + ' ' + 768)
       .append("g")
       .attr("class", "lines")
       .attr("transform", "translate(" + this.margin.left + ", " + this.margin.top + ")");
@@ -125,6 +135,7 @@ export class LineChartComponent implements OnInit {
 
   updateChart(data, dataGroup, dataBranch) {
     this.Ydomain = [];
+    this.Xdomain = [];
 
     // Domain scale function - TODO
     data[dataGroup][0][dataBranch].map(displayGroupItems => {
@@ -142,15 +153,12 @@ export class LineChartComponent implements OnInit {
       .range([30, this.width - 20])
       .domain(d3.extent(this.Xdomain));
 
-    d3.select("g.yaxis").transition(this.t)
+    d3.select("g.yaxis").transition(100)
       .call(d3.axisLeft(this.yScale));
-    d3.select("g.xaxis").transition(this.t)
+    d3.select("g.xaxis").transition(100)
       .call(d3.axisBottom(this.xScale));
 
-      
-
-
-
+    
 
     var valuePaths = d3.select("#linechart g.lines").selectAll(".lineElements")
 
@@ -161,7 +169,7 @@ export class LineChartComponent implements OnInit {
               .attr("d", d => this.lineGen(d.values) )
               .attr("stroke", (d, i) => this.colors(i))
             .call(enter => enter.transition(this.t) 
-          ),
+            ),
           update => update
               .attr("stroke", (d, i) => this.colors(i))
             .call(update => update.transition(this.t)           
