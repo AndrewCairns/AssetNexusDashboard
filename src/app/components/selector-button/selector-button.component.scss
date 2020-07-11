@@ -2,9 +2,15 @@
 @import "../../../assets/styles/Tools/variables";
 
 button {
+    display: flex;
+    justify-content: space-between;
     border: none;
-    border-radius: 5px;
-    border-left: 2px solid $brand-color--alt;
+    border-radius: 2px;
+    border-left: 4px solid $brand-color--alt;
     background-color: #fff;
-    padding: 10px 20px;
+    padding: 20px 30px;
+    min-width: 280px;
+    text-align: left;
+    font-size: 1em;
+    -webkit-font-smoothing: antialiased;
 }

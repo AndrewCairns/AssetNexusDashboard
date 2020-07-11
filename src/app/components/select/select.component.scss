@@ -4,27 +4,25 @@ select {
     linear-gradient(135deg, #577BFF 50%, transparent 50%),
     linear-gradient(to right, #ccc, #ccc);
   background-position:
-    calc(100% - 20px) calc(1em + 0px), 
-    calc(100% - 10px) calc(1em + 0px), 
-    calc(100% - 2.5em) 0.5em;
+    calc(100% - 20px) calc(1em + 10px), 
+    calc(100% - 10px) calc(1em + 10px), 
+    calc(100% - 2.5em) 0.8em;
   background-size:
     10px 10px, 
     10px 10px, 
-    1px 1.5em;
+    1px 2em;
   background-repeat: no-repeat;
 
-
-  /* styling */
   display: inline-block;
   font: inherit;
   line-height: 1.5em;
-  padding: 0.5em 3.5em 0.5em 1em;
+  padding: 20px 30px;
   border-radius: 5px;
   border: 1px solid #E0E7FF;
   background-color:rgba(224, 231, 255, 0.2);
+  min-width: 280px;
 
   /* reset */
-
   margin: 0;      
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -40,8 +38,8 @@ select:focus {
     linear-gradient(135deg, transparent 50%, #577BFF 50%),
     linear-gradient(to right, #ccc, #ccc);
   background-position:
-    calc(100% - 10px) calc(1em + 0px), 
-    calc(100% - 20px) calc(1em + 0px), 
-    calc(100% - 2.5em) 0.5em;
+    calc(100% - 10px) calc(1em + 10px), 
+    calc(100% - 20px) calc(1em + 10px), 
+    calc(100% - 2.5em) 0.8em;
   outline: 0;
 }
