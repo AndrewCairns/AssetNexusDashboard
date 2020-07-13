@@ -9,7 +9,8 @@ import data from './../../../datastore/linechartData.json';
 })
 export class TimelineComponent implements OnInit {
   timelineData = data;
-  public clickedEvent: Event;
+  public selctorClickedEvent: Event;
+  public opacityClickedEvent: Event;
 
   constructor() { }
 
@@ -17,7 +18,12 @@ export class TimelineComponent implements OnInit {
   }
 
   childEventClicked(event) {
-    this.clickedEvent = event;
+    this.selctorClickedEvent = event;
+  }
+
+  selectorOpacityClicked(event) {
+    console.log(event)
+    this.opacityClickedEvent = {...event}; // spread operator to pass changes to values within an object (rather than a change to the object itself)
   }
 
 }

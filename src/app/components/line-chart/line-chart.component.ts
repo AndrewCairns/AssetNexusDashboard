@@ -6,14 +6,15 @@ import * as d3 from 'd3';
   templateUrl: './line-chart.component.html',
   styleUrls: ['./line-chart.component.scss'],
   encapsulation: ViewEncapsulation.None
-
 })
+
 export class LineChartComponent implements OnInit {
   
   //Decorators
   @Input() transitionTime: number;
   @Input() ChartData: any;
   @Input() Selection: string;
+  @Input() opacitySelection: any;
 
   //Initialisers
   hostElement;
@@ -24,8 +25,6 @@ export class LineChartComponent implements OnInit {
   margin = {top: 30, right: 150, bottom: 80, left: 60};
   width = 1024 - this.margin.left - this.margin.right;
   height = 768 - this.margin.top - this.margin.bottom;
-  viewBoxWidth = 200;
-  viewBoxHeight = 100;
   parse = d3.timeParse("%m/%d/%Y");
   colors = d3.scaleOrdinal(d3.schemeCategory10);
   svg = d3.select("#linechart")
@@ -39,12 +38,12 @@ export class LineChartComponent implements OnInit {
       .x(d => this.xScale(this.parse(d.date)))
       .y(d => this.yScale(d.value));  
   t = d3.transition()
-    .duration(7050)
+    .duration(750)
     .ease(d3.easeLinear);
 
 
   // Data
-  data = this.ChartData;
+  data;
   displayPath;
   dataGroup =  'Assets';
   dataBranch = 'Property';
@@ -63,7 +62,7 @@ export class LineChartComponent implements OnInit {
 
 
 
-  ngOnChanges(changes) {
+  ngOnChanges(changes: SimpleChanges) {
 
     if (typeof this.Selection === 'string') {
       this.displayPath = this.Selection.split('/');
@@ -73,20 +72,14 @@ export class LineChartComponent implements OnInit {
       this.dataGroup = 'Assets';
       this.dataBranch = 'Property';
     }
-    
+
+    console.log(this.opacitySelection)
     this.updateChart(this.ChartData, this.dataGroup, this.dataBranch )
   }
 
 
 
   ngOnInit() {
-
-    console.log(this.svg.width);
-
-    console.log('height---' + this.hostElement.offsetHeight);  //<<<===here
-    console.log('width---' + this.hostElement.offsetWidth);    //<<<===here
-
-
     this.createChart(this.ChartData, this.dataGroup, this.dataBranch);
   }
 
@@ -138,7 +131,8 @@ export class LineChartComponent implements OnInit {
     this.Xdomain = [];
 
     // Domain scale function - TODO
-    data[dataGroup][0][dataBranch].map(displayGroupItems => {
+    data[dataGroup][0][dataBranch].map( (displayGroupItems, i) => {
+      displayGroupItems.color = this.colors(i);
       displayGroupItems.values.forEach(displayGroupItemValues => {
         this.Ydomain.push(displayGroupItemValues.value)
         this.Xdomain.push( this.parse(displayGroupItemValues.date));
@@ -171,7 +165,8 @@ export class LineChartComponent implements OnInit {
             .call(enter => enter.transition(this.t) 
             ),
           update => update
-              .attr("stroke", (d, i) => this.colors(i))
+            .attr("stroke", (d, i) => this.colors(i))
+            .attr("opacity", (d) => d.opacity)
             .call(update => update.transition(this.t)           
               .attr("d", d => this.lineGen(d.values) )
             ),
@@ -179,9 +174,6 @@ export class LineChartComponent implements OnInit {
             .call(exit => exit.transition(this.t) )
               .remove()
         )
-
- 
-
 
   }
 

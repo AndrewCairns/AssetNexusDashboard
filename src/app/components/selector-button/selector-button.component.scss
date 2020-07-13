@@ -2,7 +2,7 @@
 @import "../../../assets/styles/Tools/variables";
 
 button {
-    display: flex;
+    display: inline-flex;
     justify-content: space-between;
     border: none;
     border-radius: 2px;
@@ -13,4 +13,14 @@ button {
     text-align: left;
     font-size: 1em;
     -webkit-font-smoothing: antialiased;
+    margin: 0px 0px 10px 10px;
+    cursor: pointer;
+}
+
+button:focus {
+    outline: none;
+}
+
+button.is-not-active {
+    opacity: 0.5;
 }
