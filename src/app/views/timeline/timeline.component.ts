@@ -22,7 +22,6 @@ export class TimelineComponent implements OnInit {
   }
 
   selectorOpacityClicked(event) {
-    console.log(event)
     this.opacityClickedEvent = {...event}; // spread operator to pass changes to values within an object (rather than a change to the object itself)
   }
 
