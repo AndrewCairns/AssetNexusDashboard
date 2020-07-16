@@ -300,25 +300,32 @@ export class LineChartComponent implements OnInit {
       this.xScale.domain(xsDomain);
       let xScaleDomain = this.xScale.domain();
 
-      let dataFiltered = [];
-      data[dataGroup][0][dataBranch].forEach(displayGroupItems => {
-        displayGroupItems.values.forEach((displayGroupItemValues) => {
-          if ((this.parse(displayGroupItemValues.date) >= xScaleDomain[0]) && (this.parse(displayGroupItemValues.date) <= xScaleDomain[1])) {
-            dataFiltered.push(displayGroupItemValues.value);
-          };
-        })
-      })
-
-      this.yScale3 = d3.scaleLinear()
-        .range([this.height - 20, 20])
-        .domain(d3.extent(dataFiltered));
-
-      this.yScale3.domain(d3.extent(dataFiltered));
 
       d3.select("#linechart g.lines").selectAll(".lineElements").attr("d", d => this.lineGen(d.values))
       d3.select(".xaxis").call(d3.axisBottom(this.xScale));
-      d3.select("g.yaxis").transition(50)
-        .call(d3.axisLeft(this.yScale3));
+
+
+
+      //This is to scale the y axis. However, this is not desired as when the chart brushes there may be times when there is no data within a brush zone. 
+      //This means all data dissapears from the chart. Not ideal. 
+
+      // let dataFiltered = [];
+      // data[dataGroup][0][dataBranch].forEach(displayGroupItems => {
+      //   displayGroupItems.values.forEach((displayGroupItemValues) => {
+      //     if ((this.parse(displayGroupItemValues.date) >= xScaleDomain[0]) && (this.parse(displayGroupItemValues.date) <= xScaleDomain[1])) {
+      //       dataFiltered.push(displayGroupItemValues.value);
+      //     };
+      //   })
+      // })
+
+      // this.yScale3 = d3.scaleLinear()
+      //   .range([this.height - 20, 20])
+      //   .domain(d3.extent(dataFiltered));
+
+      // this.yScale3.domain(d3.extent(dataFiltered));
+
+      // d3.select("g.yaxis").transition(50)
+      //   .call(d3.axisLeft(this.yScale3));
 
     }
 
