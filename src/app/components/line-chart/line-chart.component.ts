@@ -181,6 +181,7 @@ export class LineChartComponent implements OnInit {
         this.Ydomain.push(displayGroupItemValues.value)
         this.Xdomain.push(this.parse(displayGroupItemValues.date));
         displayGroupItemValues.color = this.colors(i);
+        displayGroupItemValues.opacity = displayGroupItems.opacity;
         this.representedValues.push(displayGroupItemValues)
       });
     })
@@ -237,6 +238,9 @@ export class LineChartComponent implements OnInit {
           .remove()
       )
 
+    var div = d3.select("body").append("div")
+      .attr("class", "tooltip-donut")
+      .style("opacity", 0);
 
 
     var valuePoints = d3.select("#linechart g.lines").selectAll(".points")
@@ -253,8 +257,33 @@ export class LineChartComponent implements OnInit {
           .attr("cy", d => {
             return this.yScale(d.value)
           })
+          .on('mouseover', function (d, i) {
+            d3.select(this).transition()
+              .duration('50')
+              .attr('opacity', '.85');
+            div.transition()
+              .duration(50)
+              .style("opacity", 1);
+
+            let tipValue = "<strong>Value</strong>: " + d.value +
+              "<br/> Date: " + d.date +
+              "<br /> Verified: <em>" + d.verified + "</em>";
+
+            div.html(tipValue)
+              .style("left", (d3.event.pageX + 10) + "px")
+              .style("top", (d3.event.pageY - 15) + "px");
+          })
+          .on('mouseout', function (d, i) {
+            d3.select(this).transition()
+              .duration('50')
+              .attr('opacity', '1');
+            div.transition()
+              .duration('50')
+              .style("opacity", 0);
+          })
           .call(enter => enter.transition(this.t)),
         update => update
+          .attr("opacity", (d) => d.opacity)
           .attr("cx", d => {
             return this.xScale(this.parse(d.date))
           })

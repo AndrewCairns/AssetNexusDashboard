@@ -28,3 +28,16 @@
     stroke-width: 2.5px;
     stroke-dasharray: 5 5;
 }
+
+div.tooltip-donut {
+    position: absolute;
+    text-align: left;
+    padding: .5rem;
+    background: #FFFFFF;
+    color: #313639;
+    border: 1px solid #313639;
+    border-radius: 4px;
+    pointer-events: none;
+    font-size: 1rem;
+}
+ 
