@@ -31,6 +31,7 @@ export class LineChartComponent implements OnInit {
   svg = d3.select("#linechart")
   Ydomain = [];
   Xdomain = [];
+  representedValues = [];
   yScale;
   xScale;
   yAxis;
@@ -146,12 +147,6 @@ export class LineChartComponent implements OnInit {
 
 
 
-
-
-
-
-
-
     const contextlineGroups = svg.append("g")
       .attr("class", "context")
       .attr("transform", "translate(" + 0 + "," + this.margin2.top + ")");
@@ -177,6 +172,7 @@ export class LineChartComponent implements OnInit {
   updateChart(data, dataGroup, dataBranch) {
     this.Ydomain = [];
     this.Xdomain = [];
+    this.representedValues = [];
 
     // Domain scale function - TODO
     data[dataGroup][0][dataBranch].map((displayGroupItems, i) => {
@@ -184,8 +180,12 @@ export class LineChartComponent implements OnInit {
       displayGroupItems.values.forEach(displayGroupItemValues => {
         this.Ydomain.push(displayGroupItemValues.value)
         this.Xdomain.push(this.parse(displayGroupItemValues.date));
+        displayGroupItemValues.color = this.colors(i);
+        this.representedValues.push(displayGroupItemValues)
       });
     })
+
+    console.log(this.representedValues)
 
     this.yScale = d3.scaleLinear()
       .range([this.height - 20, 20])
@@ -202,7 +202,6 @@ export class LineChartComponent implements OnInit {
 
 
 
-
     var lineWithDefinedTrue = d3.line()
       .curve(d3.curveLinear)
       .x(d => this.xScale(this.parse(d.date)))
@@ -213,10 +212,7 @@ export class LineChartComponent implements OnInit {
       .x(d => this.xScale(this.parse(d.date)))
       .y(d => this.yScale(d.value))
       .defined((d, i) => {
-
         return d.verified === false || d.nextEntryVerified === false || d.prevEntryVerified === false;
-
-
       })
 
 
@@ -230,14 +226,42 @@ export class LineChartComponent implements OnInit {
           .attr("d", d => lineWithDefinedTrue(d.values))
           .style('clip-path', 'url(#clip)') //<-- apply clipping
           .attr("stroke", (d, i) => this.colors(i))
-          .call(enter => enter.transition(this.t)
-          ),
+          .call(enter => enter.transition(this.t)),
         update => update
           .attr("stroke", (d, i) => this.colors(i))
           .attr("opacity", (d) => d.opacity)
           .call(update => update.transition(this.t)
-            .attr("d", d => lineWithDefinedTrue(d.values))
-          ),
+            .attr("d", d => lineWithDefinedTrue(d.values))),
+        exit => exit
+          .call(exit => exit.transition(this.t))
+          .remove()
+      )
+
+
+
+    var valuePoints = d3.select("#linechart g.lines").selectAll(".points")
+
+    valuePoints.data(this.representedValues)
+      .join(
+        enter => enter.append("circle").attr("class", "points")
+          .style('clip-path', 'url(#clip)') //<-- apply clipping
+          .attr("fill", (d, i) => d.color)
+          .attr("r", 5)
+          .attr("cx", d => {
+            return this.xScale(this.parse(d.date))
+          })
+          .attr("cy", d => {
+            return this.yScale(d.value)
+          })
+          .call(enter => enter.transition(this.t)),
+        update => update
+          .attr("cx", d => {
+            return this.xScale(this.parse(d.date))
+          })
+          .attr("cy", d => {
+            return this.yScale(d.value)
+          })
+          .call(update => update.transition(this.t)),
         exit => exit
           .call(exit => exit.transition(this.t))
           .remove()
@@ -274,7 +298,6 @@ export class LineChartComponent implements OnInit {
           .call(exit => exit.transition(this.t))
           .remove()
       )
-
 
 
 
@@ -329,7 +352,7 @@ export class LineChartComponent implements OnInit {
     d3.select("#linechart").append("defs").append("clipPath")
       .attr("id", "clip")
       .append("rect")
-      .attr("width", this.width - 50)
+      .attr("width", this.width - 40)
       .attr("height", this.height)
       .attr("transform", "translate(30,0)")
 
@@ -346,12 +369,20 @@ export class LineChartComponent implements OnInit {
 
 
 
-
     function brushed() {
       let extent = d3.event.selection;
       let xsDomain = extent.map(this.xScale2.invert, this.xScale2);
       this.xScale.domain(xsDomain);
       let xScaleDomain = this.xScale.domain();
+
+
+      d3.select("#linechart g.lines").selectAll(".points")
+        .attr("cx", d => {
+          return this.xScale(this.parse(d.date))
+        })
+        .attr("cy", d => {
+          return this.yScale(d.value)
+        })
 
 
       d3.select("#linechart g.lines").selectAll(".lineElements").attr("d", d => lineWithDefinedTrue(d.values))
