@@ -25,6 +25,8 @@
     "@angular/router": "~9.0.5",
     "bootstrap-4-grid": "^3.4.0",
     "d3": "^5.16.0",
+    "d3-interpolate-path": "^2.2.1",
+    "d3-line-chunked": "^1.4.1",
     "d3-scale-chromatic": "^1.5.0",
     "mkdirp": "^1.0.4",
     "rxjs": "~6.5.4",

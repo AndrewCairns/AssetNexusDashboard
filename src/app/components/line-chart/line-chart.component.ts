@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterContentInit, Input, ElementRef, ViewEncapsulation, SimpleChanges } from '@angular/core';
 import * as d3 from 'd3';
+import * as d32 from 'd3-line-chunked';
 
 @Component({
   selector: 'app-line-chart',
@@ -42,6 +43,7 @@ export class LineChartComponent implements OnInit {
     .ease(d3.easeLinear);
 
 
+
   // Data
   data;
   displayPath;
@@ -75,7 +77,8 @@ export class LineChartComponent implements OnInit {
 
 
 
-
+  dashValuePrev = true;
+  dashValueCurrent = false;
 
 
 
@@ -199,13 +202,32 @@ export class LineChartComponent implements OnInit {
 
 
 
+
+    var lineWithDefinedTrue = d3.line()
+      .curve(d3.curveLinear)
+      .x(d => this.xScale(this.parse(d.date)))
+      .y(d => this.yScale(d.value))
+
+    var lineWithDefinedFalse = d3.line()
+      .curve(d3.curveLinear)
+      .x(d => this.xScale(this.parse(d.date)))
+      .y(d => this.yScale(d.value))
+      .defined((d, i) => {
+
+        return d.verified === false || d.nextEntryVerified === false || d.prevEntryVerified === false;
+
+
+      })
+
+
+
     var valuePaths = d3.select("#linechart g.lines").selectAll(".lineElements")
 
     valuePaths.data(data[dataGroup][0][dataBranch])
       .join(
         enter => enter.append("path").attr("class", "lineElements")
           .attr("fill", "none")
-          .attr("d", d => this.lineGen(d.values))
+          .attr("d", d => lineWithDefinedTrue(d.values))
           .style('clip-path', 'url(#clip)') //<-- apply clipping
           .attr("stroke", (d, i) => this.colors(i))
           .call(enter => enter.transition(this.t)
@@ -214,13 +236,44 @@ export class LineChartComponent implements OnInit {
           .attr("stroke", (d, i) => this.colors(i))
           .attr("opacity", (d) => d.opacity)
           .call(update => update.transition(this.t)
-            .attr("d", d => this.lineGen(d.values))
+            .attr("d", d => lineWithDefinedTrue(d.values))
           ),
         exit => exit
           .call(exit => exit.transition(this.t))
           .remove()
       )
 
+
+
+
+    // Adding dashed lines for unverified values by overlaying current line with white dashes
+    var valuePathsDashed = d3.select("#linechart g.lines").selectAll(".lineElementsDashed")
+    valuePathsDashed.data(data[dataGroup][0][dataBranch])
+      .join(
+        enter => enter.append("path").attr("class", "lineElementsDashed")
+          .attr("fill", "none")
+          .attr("d", (d, i) => {
+            lineWithDefinedFalse(d.values)
+          })
+          .style('clip-path', 'url(#clip)') //<-- apply clipping
+          .attr("stroke", '#fff')
+          .attr("stroke-width", '2px')
+          .style("stroke-dasharray", '5,5')
+          .call(enter => enter.transition(this.t)
+          ),
+        update => update
+          .attr("stroke", '#fff')
+          .style("stroke-dasharray", '5,5')
+          .attr("opacity", (d) => d.opacity)
+          .call(update => update.transition(this.t)
+            .attr("d", (d, i) => {
+              lineWithDefinedFalse(d.values)
+            })
+          ),
+        exit => exit
+          .call(exit => exit.transition(this.t))
+          .remove()
+      )
 
 
 
@@ -301,7 +354,8 @@ export class LineChartComponent implements OnInit {
       let xScaleDomain = this.xScale.domain();
 
 
-      d3.select("#linechart g.lines").selectAll(".lineElements").attr("d", d => this.lineGen(d.values))
+      d3.select("#linechart g.lines").selectAll(".lineElements").attr("d", d => lineWithDefinedTrue(d.values))
+      d3.select("#linechart g.lines").selectAll(".lineElementsDashed").attr("d", d => lineWithDefinedFalse(d.values))
       d3.select(".xaxis").call(d3.axisBottom(this.xScale));
 
 

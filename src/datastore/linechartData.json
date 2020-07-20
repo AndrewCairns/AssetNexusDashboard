@@ -6,24 +6,39 @@
                     "key": "Property 1",
                     "values": [
                         {
-                            "value": 306,
-                            "date": "12/9/2015"
+                            "value": 120,
+                            "date": "12/9/2015",
+                            "verified": true,
+                            "prevEntryVerified": null,
+                            "nextEntryVerified": false
                         },
                         {
                             "value": 9,
-                            "date": "5/1/2016"
+                            "date": "5/1/2016",
+                            "verified": false,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": false
+                        },
+                        {
+                            "value": 27,
+                            "date": "10/30/2017",
+                            "verified": false,
+                            "prevEntryVerified": false,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 37,
-                            "date": "10/30/2017"
-                        },
-                        {
-                            "value": 37,
-                            "date": "4/18/2019"
+                            "date": "4/18/2019",
+                            "verified": true,
+                            "prevEntryVerified": false,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 39,
-                            "date": "2/6/2020"
+                            "date": "2/6/2020",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": null
                         }
                     ]
                 },
@@ -32,23 +47,38 @@
                     "values": [
                         {
                             "value": 16,
-                            "date": "12/9/2015"
+                            "date": "12/9/2015",
+                            "verified": true,
+                            "prevEntryVerified": null,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 29,
-                            "date": "5/1/2016"
+                            "date": "5/1/2016",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 27,
-                            "date": "10/30/2017"
+                            "date": "10/30/2017",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 17,
-                            "date": "4/18/2019"
+                            "date": "4/18/2019",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 9,
-                            "date": "2/6/2020"
+                            "date": "2/6/2020",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": null
                         }
                     ]
                 },
@@ -57,23 +87,38 @@
                     "values": [
                         {
                             "value": 46,
-                            "date": "12/9/2015"
+                            "date": "12/9/2015",
+                            "verified": true,
+                            "prevEntryVerified": null,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 49,
-                            "date": "5/1/2016"
+                            "date": "5/1/2016",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 57,
-                            "date": "10/30/2017"
+                            "date": "10/30/2017",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 17,
-                            "date": "4/18/2019"
+                            "date": "4/18/2019",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 49,
-                            "date": "2/6/2020"
+                            "date": "2/6/2020",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": null
                         }
                     ]
                 },
@@ -81,24 +126,39 @@
                     "key": "Property 4",
                     "values": [
                         {
-                            "value": 906,
-                            "date": "12/9/2015"
+                            "value": 50,
+                            "date": "12/9/2015",
+                            "verified": true,
+                            "prevEntryVerified": null,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 16,
-                            "date": "5/1/2016"
+                            "date": "5/1/2016",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 34,
-                            "date": "10/30/2017"
+                            "date": "10/30/2017",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 65,
-                            "date": "4/18/2019"
+                            "date": "4/18/2019",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 23,
-                            "date": "2/6/2020"
+                            "date": "2/6/2020",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": null
                         }
                     ]
                 }
@@ -109,23 +169,38 @@
                     "values": [
                         {
                             "value": 56,
-                            "date": "12/9/2015"
+                            "date": "12/9/2015",
+                            "verified": true,
+                            "prevEntryVerified": null,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 59,
-                            "date": "5/1/2016"
+                            "date": "5/1/2016",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 17,
-                            "date": "10/30/2017"
+                            "date": "10/30/2017",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 27,
-                            "date": "4/18/2019"
+                            "date": "4/18/2019",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 30,
-                            "date": "2/6/2040"
+                            "date": "2/6/2040",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": null
                         }
                     ]
                 },
@@ -134,23 +209,38 @@
                     "values": [
                         {
                             "value": 36,
-                            "date": "12/9/2015"
+                            "date": "12/9/2015",
+                            "verified": true,
+                            "prevEntryVerified": null,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 9,
-                            "date": "5/1/2016"
+                            "date": "5/1/2016",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 37,
-                            "date": "10/30/2017"
+                            "date": "10/30/2017",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 37,
-                            "date": "4/18/2019"
+                            "date": "4/18/2019",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 39,
-                            "date": "2/6/2020"
+                            "date": "2/6/2020",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": null
                         }
                     ]
                 },
@@ -159,23 +249,38 @@
                     "values": [
                         {
                             "value": 12,
-                            "date": "12/9/2015"
+                            "date": "12/9/2015",
+                            "verified": true,
+                            "prevEntryVerified": null,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 74,
-                            "date": "5/1/2016"
+                            "date": "5/1/2016",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 54,
-                            "date": "10/30/2017"
+                            "date": "10/30/2017",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 34,
-                            "date": "4/18/2019"
+                            "date": "4/18/2019",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 59,
-                            "date": "2/6/2020"
+                            "date": "2/6/2020",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": null
                         }
                     ]
                 }
@@ -190,23 +295,38 @@
                     "values": [
                         {
                             "value": 31206,
-                            "date": "12/9/2015"
+                            "date": "12/9/2015",
+                            "verified": true,
+                            "prevEntryVerified": null,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 112329,
-                            "date": "5/1/2016"
+                            "date": "5/1/2016",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 12337,
-                            "date": "10/30/2017"
+                            "date": "10/30/2017",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 12437,
-                            "date": "4/18/2019"
+                            "date": "4/18/2019",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 234439,
-                            "date": "2/6/2020"
+                            "date": "2/6/2020",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": null
                         }
                     ]
                 },
@@ -215,23 +335,38 @@
                     "values": [
                         {
                             "value": 37706,
-                            "date": "12/9/2015"
+                            "date": "12/9/2015",
+                            "verified": true,
+                            "prevEntryVerified": null,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 567659,
-                            "date": "5/1/2016"
+                            "date": "5/1/2016",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 356777,
-                            "date": "10/30/2017"
+                            "date": "10/30/2017",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 786317,
-                            "date": "4/18/2019"
+                            "date": "4/18/2019",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 323419,
-                            "date": "2/6/2020"
+                            "date": "2/6/2020",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": null
                         }
                     ]
                 },
@@ -240,23 +375,38 @@
                     "values": [
                         {
                             "value": 675306,
-                            "date": "12/9/2015"
+                            "date": "12/9/2015",
+                            "verified": true,
+                            "prevEntryVerified": null,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 5679,
-                            "date": "5/1/2016"
+                            "date": "5/1/2016",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 56737,
-                            "date": "10/30/2017"
+                            "date": "10/30/2017",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 75537,
-                            "date": "4/18/2019"
+                            "date": "4/18/2019",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 36579,
-                            "date": "2/6/2020"
+                            "date": "2/6/2020",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": null
                         }
                     ]
                 },
@@ -265,23 +415,38 @@
                     "values": [
                         {
                             "value": 3063243,
-                            "date": "12/9/2015"
+                            "date": "12/9/2015",
+                            "verified": true,
+                            "prevEntryVerified": null,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 324239,
-                            "date": "5/1/2016"
+                            "date": "5/1/2016",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 3234237,
-                            "date": "10/30/2017"
+                            "date": "10/30/2017",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 3233247,
-                            "date": "4/18/2019"
+                            "date": "4/18/2019",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 3232449,
-                            "date": "2/6/2020"
+                            "date": "2/6/2020",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": null
                         }
                     ]
                 }
@@ -292,23 +457,38 @@
                     "values": [
                         {
                             "value": 3063,
-                            "date": "12/9/2015"
+                            "date": "12/9/2015",
+                            "verified": true,
+                            "prevEntryVerified": null,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 9234,
-                            "date": "5/1/2016"
+                            "date": "5/1/2016",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 3723,
-                            "date": "10/30/2017"
+                            "date": "10/30/2017",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 3743,
-                            "date": "4/18/2019"
+                            "date": "4/18/2019",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 2339,
-                            "date": "2/6/2020"
+                            "date": "2/6/2020",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": null
                         }
                     ]
                 },
@@ -317,23 +497,38 @@
                     "values": [
                         {
                             "value": 5306,
-                            "date": "12/9/2015"
+                            "date": "12/9/2015",
+                            "verified": true,
+                            "prevEntryVerified": null,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 4449,
-                            "date": "5/1/2016"
+                            "date": "5/1/2016",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 3337,
-                            "date": "10/30/2017"
+                            "date": "10/30/2017",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 2237,
-                            "date": "4/18/2019"
+                            "date": "4/18/2019",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 1139,
-                            "date": "2/6/2020"
+                            "date": "2/6/2020",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": null
                         }
                     ]
                 }
@@ -344,23 +539,38 @@
                     "values": [
                         {
                             "value": 1306,
-                            "date": "12/9/2015"
+                            "date": "12/9/2015",
+                            "verified": true,
+                            "prevEntryVerified": null,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 2129,
-                            "date": "5/1/2016"
+                            "date": "5/1/2016",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 6737,
-                            "date": "10/30/2017"
+                            "date": "10/30/2017",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 7637,
-                            "date": "4/18/2019"
+                            "date": "4/18/2019",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 8639,
-                            "date": "2/6/2020"
+                            "date": "2/6/2020",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": null
                         }
                     ]
                 },
@@ -369,23 +579,38 @@
                     "values": [
                         {
                             "value": 3064,
-                            "date": "12/9/2015"
+                            "date": "12/9/2015",
+                            "verified": true,
+                            "prevEntryVerified": null,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 9454,
-                            "date": "5/1/2016"
+                            "date": "5/1/2016",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 3457,
-                            "date": "10/30/2017"
+                            "date": "10/30/2017",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 3754,
-                            "date": "4/18/2019"
+                            "date": "4/18/2019",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 3459,
-                            "date": "2/6/2020"
+                            "date": "2/6/2020",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": null
                         }
                     ]
                 }
@@ -400,23 +625,38 @@
                     "values": [
                         {
                             "value": 45306,
-                            "date": "12/9/2015"
+                            "date": "12/9/2015",
+                            "verified": true,
+                            "prevEntryVerified": null,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 4459,
-                            "date": "5/1/2016"
+                            "date": "5/1/2016",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 3877,
-                            "date": "10/30/2017"
+                            "date": "10/30/2017",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 3877,
-                            "date": "4/18/2019"
+                            "date": "4/18/2019",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 3978,
-                            "date": "2/6/2020"
+                            "date": "2/6/2020",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": null
                         }
                     ]
                 },
@@ -425,23 +665,38 @@
                     "values": [
                         {
                             "value": 3706,
-                            "date": "12/9/2015"
+                            "date": "12/9/2015",
+                            "verified": true,
+                            "prevEntryVerified": null,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 7889,
-                            "date": "5/1/2016"
+                            "date": "5/1/2016",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 7837,
-                            "date": "10/30/2017"
+                            "date": "10/30/2017",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 3775,
-                            "date": "4/18/2019"
+                            "date": "4/18/2019",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 3569,
-                            "date": "2/6/2020"
+                            "date": "2/6/2020",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": null
                         }
                     ]
                 }
@@ -452,23 +707,38 @@
                     "values": [
                         {
                             "value": 3076,
-                            "date": "12/9/2015"
+                            "date": "12/9/2015",
+                            "verified": true,
+                            "prevEntryVerified": null,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 3439,
-                            "date": "5/1/2016"
+                            "date": "5/1/2016",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 3657,
-                            "date": "10/30/2017"
+                            "date": "10/30/2017",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 3657,
-                            "date": "4/18/2019"
+                            "date": "4/18/2019",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 3659,
-                            "date": "2/6/2020"
+                            "date": "2/6/2020",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": null
                         }
                     ]
                 },
@@ -477,23 +747,38 @@
                     "values": [
                         {
                             "value": 306,
-                            "date": "12/9/2015"
+                            "date": "12/9/2015",
+                            "verified": true,
+                            "prevEntryVerified": null,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 569,
-                            "date": "5/1/2016"
+                            "date": "5/1/2016",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 337,
-                            "date": "10/30/2017"
+                            "date": "10/30/2017",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 3127,
-                            "date": "4/18/2019"
+                            "date": "4/18/2019",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": true
                         },
                         {
                             "value": 399,
-                            "date": "2/6/2020"
+                            "date": "2/6/2020",
+                            "verified": true,
+                            "prevEntryVerified": true,
+                            "nextEntryVerified": null
                         }
                     ]
                 }
