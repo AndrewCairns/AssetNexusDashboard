@@ -27,7 +27,11 @@ export class LineChartComponent implements OnInit {
   width = 1024 - this.margin.left - this.margin.right;
   height = 730 - this.margin.top - this.margin.bottom;
   parse = d3.timeParse("%m/%d/%Y");
-  colors = d3.scaleOrdinal(d3.schemeCategory10);
+  colorsArray = ["#7400b8","#5e60ce","#48bfe3","#64dfdf","#80ffdb"]
+  colorsOrg = d3.scaleOrdinal(d3.schemeCategory10);
+  // colorsFull = d3.scaleOrdinal(["#7400b8","#6930c3","#5e60ce","#5390d9","#4ea8de","#48bfe3","#56cfe1","#64dfdf","#72efdd","#80ffdb"]);
+  colors = d3.scaleOrdinal(this.colorsArray);
+
   svg = d3.select("#linechart")
   Ydomain = [];
   Xdomain = [];
@@ -347,11 +351,13 @@ export class LineChartComponent implements OnInit {
 
     var context = d3.select("#linechart g.context").selectAll('.lineElementsContext');
 
-
     context.data(data[dataGroup][0][dataBranch])
       .join(
         enter => enter.append("path").attr("class", "lineElementsContext")
-          .attr("fill", "red")
+          .attr("fill", () => {
+            var mid = this.colorsArray.length / 2;
+            return this.colorsArray[ Math.round(mid) - 1 ];
+          })
           .attr("d", d => this.area(d.values))
           .call(enter => enter.transition(this.t)
           ),
