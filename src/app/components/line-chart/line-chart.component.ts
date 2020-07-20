@@ -27,7 +27,7 @@ export class LineChartComponent implements OnInit {
   width = 1024 - this.margin.left - this.margin.right;
   height = 730 - this.margin.top - this.margin.bottom;
   parse = d3.timeParse("%m/%d/%Y");
-  colorsArray = ["#7400b8","#5e60ce","#48bfe3","#64dfdf","#80ffdb"]
+  colorsArray = ["#7400b8", "#5e60ce", "#48bfe3", "#64dfdf", "#80ffdb"]
   colorsOrg = d3.scaleOrdinal(d3.schemeCategory10);
   // colorsFull = d3.scaleOrdinal(["#7400b8","#6930c3","#5e60ce","#5390d9","#4ea8de","#48bfe3","#56cfe1","#64dfdf","#72efdd","#80ffdb"]);
   colors = d3.scaleOrdinal(this.colorsArray);
@@ -159,7 +159,7 @@ export class LineChartComponent implements OnInit {
 
     this.xAxis2 = svg.append("g")
       .attr("class", "xaxis2")
-      .attr("transform", "translate(0," + (this.margin2.top + this.height2 )+ ")")
+      .attr("transform", "translate(0," + (this.margin2.top + this.height2) + ")")
       .call(d3.axisBottom(this.xScale));
 
 
@@ -354,15 +354,16 @@ export class LineChartComponent implements OnInit {
     context.data(data[dataGroup][0][dataBranch])
       .join(
         enter => enter.append("path").attr("class", "lineElementsContext")
-          .attr("fill", () => {
+        .attr("fill", () => {
             var mid = this.colorsArray.length / 2;
-            return this.colorsArray[ Math.round(mid) - 1 ];
+            return this.colorsArray[Math.round(mid) - 1];
           })
+          .attr("opacity", '0.2')
           .attr("d", d => this.area(d.values))
           .call(enter => enter.transition(this.t)
           ),
         update => update
-          .attr("opacity", (d) => d.opacity)
+          .attr("opacity", '0.2')
           .call(update => update.transition(this.t)
             .attr("d", d => this.area(d.values))
           ),
@@ -371,9 +372,7 @@ export class LineChartComponent implements OnInit {
           .remove()
       )
 
-
-
-
+    
 
 
     var brush = d3.brushX()
