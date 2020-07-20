@@ -23,9 +23,9 @@ export class LineChartComponent implements OnInit {
 
 
   //Chart Config
-  margin = { top: 150, right: 150, bottom: 80, left: 60 };
+  margin = { top: 0, right: 150, bottom: 150, left: 60 };
   width = 1024 - this.margin.left - this.margin.right;
-  height = 768 - this.margin.top - this.margin.bottom;
+  height = 730 - this.margin.top - this.margin.bottom;
   parse = d3.timeParse("%m/%d/%Y");
   colors = d3.scaleOrdinal(d3.schemeCategory10);
   svg = d3.select("#linechart")
@@ -55,7 +55,7 @@ export class LineChartComponent implements OnInit {
 
 
 
-  margin2 = { top: 10, right: 150, bottom: 80, left: 60 };
+  margin2 = { top: 630, right: 150, bottom: 0, left: 60 };
   height2 = 100;
   xAxis2;
   //xscale
@@ -155,7 +155,7 @@ export class LineChartComponent implements OnInit {
 
     this.xAxis2 = svg.append("g")
       .attr("class", "xaxis2")
-      .attr("transform", "translate(0," + this.height2 + ")")
+      .attr("transform", "translate(0," + (this.margin2.top + this.height2 )+ ")")
       .call(d3.axisBottom(this.xScale));
 
 
@@ -185,8 +185,6 @@ export class LineChartComponent implements OnInit {
         this.representedValues.push(displayGroupItemValues)
       });
     })
-
-    console.log(this.representedValues)
 
     this.yScale = d3.scaleLinear()
       .range([this.height - 20, 20])
