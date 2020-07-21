@@ -240,6 +240,41 @@ export class LineChartComponent implements OnInit {
           .remove()
       )
 
+
+    // Adding dashed lines for unverified values by overlaying current line with white dashes
+    var valuePathsDashed = d3.select("#linechart g.lines").selectAll(".lineElementsDashed")
+    valuePathsDashed.data(data[dataGroup][0][dataBranch])
+      .join(
+        enter => enter.append("path").attr("class", "lineElementsDashed")
+          .attr("fill", "none")
+          .attr("d", (d, i) => {
+            lineWithDefinedFalse(d.values)
+          })
+          .style('clip-path', 'url(#clip)') //<-- apply clipping
+          .attr("stroke", '#fff')
+          .attr("stroke-width", '2px')
+          .style("stroke-dasharray", '5,5')
+          .call(enter => enter.transition(this.t)
+          ),
+        update => update
+          .attr("stroke", '#fff')
+          .style("stroke-dasharray", '5,5')
+          .attr("opacity", (d) => d.opacity)
+          .call(update => update.transition(this.t)
+            .attr("d", (d, i) => {
+              lineWithDefinedFalse(d.values)
+            })
+          ),
+        exit => exit
+          .call(exit => exit.transition(this.t))
+          .remove()
+      )
+
+
+
+
+
+
     var div = d3.select("body").append("div")
       .attr("class", "tooltip-donut")
       .style("opacity", 0);
@@ -251,7 +286,14 @@ export class LineChartComponent implements OnInit {
       .join(
         enter => enter.append("circle").attr("class", "points")
           .style('clip-path', 'url(#clip)') //<-- apply clipping
-          .attr("fill", (d, i) => d.color)
+          // .attr("fill", (d, i) => d.color)
+          .style("fill", (d, i) => {
+            return d.verified === true ? d.color : "#fff8ee";
+          })
+          .style("opacity", .8)      // set the element opacity
+          .style("stroke", (d, i) => d.color)    // set the line colour
+          .style("stroke-width", 3.5)
+
           .attr("r", 5)
           .attr("cx", d => {
             return this.xScale(this.parse(d.date))
@@ -301,44 +343,6 @@ export class LineChartComponent implements OnInit {
 
 
 
-    // Adding dashed lines for unverified values by overlaying current line with white dashes
-    var valuePathsDashed = d3.select("#linechart g.lines").selectAll(".lineElementsDashed")
-    valuePathsDashed.data(data[dataGroup][0][dataBranch])
-      .join(
-        enter => enter.append("path").attr("class", "lineElementsDashed")
-          .attr("fill", "none")
-          .attr("d", (d, i) => {
-            lineWithDefinedFalse(d.values)
-          })
-          .style('clip-path', 'url(#clip)') //<-- apply clipping
-          .attr("stroke", '#fff')
-          .attr("stroke-width", '2px')
-          .style("stroke-dasharray", '5,5')
-          .call(enter => enter.transition(this.t)
-          ),
-        update => update
-          .attr("stroke", '#fff')
-          .style("stroke-dasharray", '5,5')
-          .attr("opacity", (d) => d.opacity)
-          .call(update => update.transition(this.t)
-            .attr("d", (d, i) => {
-              lineWithDefinedFalse(d.values)
-            })
-          ),
-        exit => exit
-          .call(exit => exit.transition(this.t))
-          .remove()
-      )
-
-
-
-
-
-
-
-
-
-
     this.xScale2 = d3.scaleTime()
       .range([30, this.width - 20])
       .domain(d3.extent(this.Xdomain));
@@ -354,7 +358,7 @@ export class LineChartComponent implements OnInit {
     context.data(data[dataGroup][0][dataBranch])
       .join(
         enter => enter.append("path").attr("class", "lineElementsContext")
-        .attr("fill", () => {
+          .attr("fill", () => {
             var mid = this.colorsArray.length / 2;
             return this.colorsArray[Math.round(mid) - 1];
           })
@@ -372,7 +376,7 @@ export class LineChartComponent implements OnInit {
           .remove()
       )
 
-    
+
 
 
     var brush = d3.brushX()
