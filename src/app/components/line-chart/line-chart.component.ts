@@ -70,12 +70,12 @@ export class LineChartComponent implements OnInit {
 
 
   lineGen2 = d3.line()
-    .curve(d3.curveMonotoneX)
+    .curve(d3.curveLinear)
     .x(d => this.xScale2(this.parse(d.date)))
     .y(d => this.yScale2(d.value));
 
   area = d3.area()
-    .curve(d3.curveMonotoneX)
+    .curve(d3.curveLinear)
     .x(d => this.xScale2(this.parse(d.date)))
     .y0(this.height2)
     .y1(d => this.yScale2(d.value));
@@ -202,7 +202,7 @@ export class LineChartComponent implements OnInit {
 
     d3.select("g.yaxis").transition(100)
       .call(d3.axisLeft(this.yScale));
-    d3.select("g.xaxis").transition(100)
+    d3.select("g.xaxis")
       .call(d3.axisBottom(this.xScale));
 
 
@@ -244,8 +244,8 @@ export class LineChartComponent implements OnInit {
         update => update
           .attr("stroke", (d, i) => this.colors(i))
           .attr("opacity", (d) => d.opacity)
-          .call(update => update.transition(this.t)
-            .attr("d", d => lineWithDefinedTrue(d.values))),
+          .attr("d", d => lineWithDefinedTrue(d.values))
+          .call(update => update.transition(this.t)),
         exit => exit
           .call(exit => exit.transition(this.t))
           .remove()
@@ -270,8 +270,8 @@ export class LineChartComponent implements OnInit {
         update => update
           .attr("stroke", (d, i) => this.colors(i))
           .attr("opacity", (d) => { return d.opacity === 1 ? 0.2 : 0; })
-          .call(update => update.transition(this.t)
-            .attr("d", d => areaWithDefinedTrue(d.values))),
+          .attr("d", d => areaWithDefinedTrue(d.values))
+          .call(update => update.transition(this.t)),
         exit => exit
           .call(exit => exit.transition(this.t))
           .remove()
@@ -300,11 +300,8 @@ export class LineChartComponent implements OnInit {
           .attr("stroke", '#fff')
           .style("stroke-dasharray", '5,5')
           .attr("opacity", (d) => { return d.opacity === 1 ? 1 : 0; })
-          .attr("d", (d, i) => {
-            lineWithDefinedFalse(d.values)
-          })
-          .call(update => update.transition(this.t)
-          ),
+          .attr("d", (d, i) => { lineWithDefinedFalse(d.values) })
+          .call(update => update.transition(this.t)),
         exit => exit
           .call(exit => exit.transition(this.t))
           .remove()
@@ -422,9 +419,11 @@ export class LineChartComponent implements OnInit {
 
     context2.append("g")
       .attr("class", "brush")
+      .attr("width", 100)
       .call(brush)
-      .call(brush.move, this.xScale2.range());
+      .call(brush.move, [ (this.xScale2.range()[1]/5)*2, (this.xScale2.range()[1]/5)*3]);
 
+    console.log(this.xScale2.range())
 
 
 
@@ -435,8 +434,6 @@ export class LineChartComponent implements OnInit {
       let extent = d3.event.selection;
       let xsDomain = extent.map(this.xScale2.invert, this.xScale2);
       this.xScale.domain(xsDomain);
-      let xScaleDomain = this.xScale.domain();
-
 
       d3.select("#linechart g.lines").selectAll(".points")
         .attr("cx", d => { return this.xScale(this.parse(d.date)) })
