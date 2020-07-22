@@ -23,11 +23,12 @@ export class LineChartComponent implements OnInit {
 
 
   //Chart Config
-  margin = { top: 0, right: 150, bottom: 150, left: 60 };
-  width = 1024 - this.margin.left - this.margin.right;
-  height = 730 - this.margin.top - this.margin.bottom;
+  margin = { top: 0, right: 100, bottom: 0, left: 0 };
+  width = 1124 - this.margin.left - this.margin.right;
+  height = 300 - this.margin.top - this.margin.bottom;
   parse = d3.timeParse("%m/%d/%Y");
-  colorsArray = ["#7400b8", "#5e60ce", "#48bfe3", "#64dfdf", "#80ffdb"]
+  // colorsArray = ["#7400b8", "#5e60ce", "#48bfe3", "#64dfdf", "#80ffdb"]
+  colorsArray = ["#2E5BFF", "#8C54FF"]
   colorsOrg = d3.scaleOrdinal(d3.schemeCategory10);
   // colorsFull = d3.scaleOrdinal(["#7400b8","#6930c3","#5e60ce","#5390d9","#4ea8de","#48bfe3","#56cfe1","#64dfdf","#72efdd","#80ffdb"]);
   colors = d3.scaleOrdinal(this.colorsArray);
@@ -59,7 +60,7 @@ export class LineChartComponent implements OnInit {
 
 
 
-  margin2 = { top: 630, right: 150, bottom: 0, left: 60 };
+  margin2 = { top: 330, right: 150, bottom: 0, left: 0 };
   height2 = 100;
   xAxis2;
   //xscale
@@ -69,6 +70,7 @@ export class LineChartComponent implements OnInit {
 
 
   lineGen2 = d3.line()
+    .curve(d3.curveMonotoneX)
     .x(d => this.xScale2(this.parse(d.date)))
     .y(d => this.yScale2(d.value));
 
@@ -146,7 +148,7 @@ export class LineChartComponent implements OnInit {
       .domain(d3.extent(this.Ydomain))
       .nice();
 
-    this.xAxis = svg.append("g").attr("class", "xaxis").attr("transform", "translate(0," + (this.height - 20) + ")").call(d3.axisBottom(this.xScale));
+    this.xAxis = svg.append("g").attr("class", "xaxis").attr("transform", "translate(0," + (this.height) + ")").call(d3.axisBottom(this.xScale));
     this.yAxis = svg.append("g").attr("class", "yaxis").attr("transform", "translate(30,0)").call(d3.axisLeft(this.yScale));
 
 
@@ -191,8 +193,8 @@ export class LineChartComponent implements OnInit {
     })
 
     this.yScale = d3.scaleLinear()
-      .range([this.height - 20, 20])
-      .domain(d3.extent(this.Ydomain));
+      .range([this.height, 20])
+      .domain([0, d3.max(this.Ydomain)]);
 
     this.xScale = d3.scaleTime()
       .range([30, this.width - 20])
@@ -218,17 +220,26 @@ export class LineChartComponent implements OnInit {
         return d.verified === false || d.nextEntryVerified === false || d.prevEntryVerified === false;
       })
 
+    var areaWithDefinedTrue = d3.area()
+      .curve(d3.curveLinear)
+      .x(d => this.xScale(this.parse(d.date)))
+      .y0(this.height)
+      .y1(d => this.yScale(d.value));
 
 
     var valuePaths = d3.select("#linechart g.lines").selectAll(".lineElements")
-
     valuePaths.data(data[dataGroup][0][dataBranch])
       .join(
         enter => enter.append("path").attr("class", "lineElements")
-          .attr("fill", "none")
+          .attr("fill", 'none')
           .attr("d", d => lineWithDefinedTrue(d.values))
+          .attr("opacity", (d) => d.opacity)
           .style('clip-path', 'url(#clip)') //<-- apply clipping
+
+          .attr("filter", "url(#dropshadow)")
+
           .attr("stroke", (d, i) => this.colors(i))
+          .style("stroke-linejoin", "round")
           .call(enter => enter.transition(this.t)),
         update => update
           .attr("stroke", (d, i) => this.colors(i))
@@ -241,36 +252,63 @@ export class LineChartComponent implements OnInit {
       )
 
 
-    // Adding dashed lines for unverified values by overlaying current line with white dashes
-    var valuePathsDashed = d3.select("#linechart g.lines").selectAll(".lineElementsDashed")
-    valuePathsDashed.data(data[dataGroup][0][dataBranch])
+
+
+
+
+
+    var valueAreas = d3.select("#linechart g.lines").selectAll(".AreaElements")
+    valueAreas.data(data[dataGroup][0][dataBranch])
       .join(
-        enter => enter.append("path").attr("class", "lineElementsDashed")
-          .attr("fill", "none")
-          .attr("d", (d, i) => {
-            lineWithDefinedFalse(d.values)
-          })
+        enter => enter.append("path").attr("class", "AreaElements")
+          .attr("fill", (d, i) => this.colors(i))
+          .attr("d", d => areaWithDefinedTrue(d.values))
+          .attr("opacity", (d) => { return d.opacity === 1 ? 0.2 : 0; })
           .style('clip-path', 'url(#clip)') //<-- apply clipping
-          .attr("stroke", '#fff')
-          .attr("stroke-width", '2px')
-          .style("stroke-dasharray", '5,5')
-          .call(enter => enter.transition(this.t)
-          ),
+          .attr("stroke", (d, i) => this.colors(i))
+          .call(enter => enter.transition(this.t)),
         update => update
-          .attr("stroke", '#fff')
-          .style("stroke-dasharray", '5,5')
-          .attr("opacity", (d) => d.opacity)
+          .attr("stroke", (d, i) => this.colors(i))
+          .attr("opacity", (d) => { return d.opacity === 1 ? 0.2 : 0; })
           .call(update => update.transition(this.t)
-            .attr("d", (d, i) => {
-              lineWithDefinedFalse(d.values)
-            })
-          ),
+            .attr("d", d => areaWithDefinedTrue(d.values))),
         exit => exit
           .call(exit => exit.transition(this.t))
           .remove()
       )
 
 
+
+
+
+    // Adding dashed lines for unverified values by overlaying current line with white dashes
+    var valuePathsDashed = d3.select("#linechart g.lines").selectAll(".lineElementsDashed")
+    valuePathsDashed.data(data[dataGroup][0][dataBranch])
+      .join(
+        enter => enter.append("path").attr("class", "lineElementsDashed")
+          .attr("fill", "none")
+          .attr("d", (d, i) => { lineWithDefinedFalse(d.values) })
+          .style('clip-path', 'url(#clip)') //<-- apply clipping
+          .attr("stroke", '#fff')
+          .attr("opacity", (d) => { return d.opacity === 1 ? 1 : 0; })
+          .attr("stroke-width", '2px')
+          .style("stroke-dasharray", '5,5')
+          .call(enter => enter.transition(this.t)
+          ),
+        update => update
+          .attr("d", (d, i) => { lineWithDefinedFalse(d.values) })
+          .attr("stroke", '#fff')
+          .style("stroke-dasharray", '5,5')
+          .attr("opacity", (d) => { return d.opacity === 1 ? 1 : 0; })
+          .attr("d", (d, i) => {
+            lineWithDefinedFalse(d.values)
+          })
+          .call(update => update.transition(this.t)
+          ),
+        exit => exit
+          .call(exit => exit.transition(this.t))
+          .remove()
+      )
 
 
 
@@ -286,21 +324,13 @@ export class LineChartComponent implements OnInit {
       .join(
         enter => enter.append("circle").attr("class", "points")
           .style('clip-path', 'url(#clip)') //<-- apply clipping
-          // .attr("fill", (d, i) => d.color)
-          .style("fill", (d, i) => {
-            return d.verified === true ? d.color : "#fff8ee";
-          })
-          .style("opacity", .8)      // set the element opacity
+          .style("fill", (d, i) => { return d.verified === true ? d.color : "#fff8ee"; })
+          .attr("opacity", (d) => { return d.opacity === 1 ? 1 : 0; })
           .style("stroke", (d, i) => d.color)    // set the line colour
           .style("stroke-width", 3.5)
-
           .attr("r", 5)
-          .attr("cx", d => {
-            return this.xScale(this.parse(d.date))
-          })
-          .attr("cy", d => {
-            return this.yScale(d.value)
-          })
+          .attr("cx", d => { return this.xScale(this.parse(d.date)) })
+          .attr("cy", d => { return this.yScale(d.value) })
           .on('mouseover', function (d, i) {
             d3.select(this).transition()
               .duration('50')
@@ -327,13 +357,9 @@ export class LineChartComponent implements OnInit {
           })
           .call(enter => enter.transition(this.t)),
         update => update
-          .attr("opacity", (d) => d.opacity)
-          .attr("cx", d => {
-            return this.xScale(this.parse(d.date))
-          })
-          .attr("cy", d => {
-            return this.yScale(d.value)
-          })
+          .attr("opacity", (d) => { return d.opacity === 1 ? 1 : 0; })
+          .attr("cx", d => { return this.xScale(this.parse(d.date)) })
+          .attr("cy", d => { return this.yScale(d.value) })
           .call(update => update.transition(this.t)),
         exit => exit
           .call(exit => exit.transition(this.t))
@@ -413,14 +439,10 @@ export class LineChartComponent implements OnInit {
 
 
       d3.select("#linechart g.lines").selectAll(".points")
-        .attr("cx", d => {
-          return this.xScale(this.parse(d.date))
-        })
-        .attr("cy", d => {
-          return this.yScale(d.value)
-        })
+        .attr("cx", d => { return this.xScale(this.parse(d.date)) })
+        .attr("cy", d => { return this.yScale(d.value) })
 
-
+      d3.select("#linechart g.lines").selectAll(".AreaElements").attr("d", d => areaWithDefinedTrue(d.values))
       d3.select("#linechart g.lines").selectAll(".lineElements").attr("d", d => lineWithDefinedTrue(d.values))
       d3.select("#linechart g.lines").selectAll(".lineElementsDashed").attr("d", d => lineWithDefinedFalse(d.values))
       d3.select(".xaxis").call(d3.axisBottom(this.xScale));
