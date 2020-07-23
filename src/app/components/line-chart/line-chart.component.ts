@@ -28,6 +28,7 @@ export class LineChartComponent implements OnInit {
   height = 300 - this.margin.top - this.margin.bottom;
   parse = d3.timeParse("%m/%d/%Y");
   // colorsArray = ["#7400b8", "#5e60ce", "#48bfe3", "#64dfdf", "#80ffdb"]
+  // colorsArray = ["red", "green", "blue"]
   colorsArray = ["#2E5BFF", "#8C54FF"]
   colorsOrg = d3.scaleOrdinal(d3.schemeCategory10);
   // colorsFull = d3.scaleOrdinal(["#7400b8","#6930c3","#5e60ce","#5390d9","#4ea8de","#48bfe3","#56cfe1","#64dfdf","#72efdd","#80ffdb"]);
@@ -148,8 +149,15 @@ export class LineChartComponent implements OnInit {
       .domain(d3.extent(this.Ydomain))
       .nice();
 
-    this.xAxis = svg.append("g").attr("class", "xaxis").attr("transform", "translate(0," + (this.height) + ")").call(d3.axisBottom(this.xScale));
-    this.yAxis = svg.append("g").attr("class", "yaxis").attr("transform", "translate(30,0)").call(d3.axisLeft(this.yScale));
+    this.xAxis = svg.append("g")
+      .attr("class", "xaxis axis")
+      .attr("transform", "translate(0," + (this.height) + ")")
+      .call(d3.axisBottom(this.xScale));
+
+    this.yAxis = svg.append("g")
+      .attr("class", "yaxis axis")
+      .attr("transform", "translate(30,0)")
+      .call(d3.axisLeft(this.yScale));
 
 
 
@@ -160,7 +168,7 @@ export class LineChartComponent implements OnInit {
     var context = contextlineGroups.selectAll("g")
 
     this.xAxis2 = svg.append("g")
-      .attr("class", "xaxis2")
+      .attr("class", "xaxis2 axis")
       .attr("transform", "translate(0," + (this.margin2.top + this.height2) + ")")
       .call(d3.axisBottom(this.xScale));
 
@@ -194,7 +202,7 @@ export class LineChartComponent implements OnInit {
 
     this.yScale = d3.scaleLinear()
       .range([this.height, 20])
-      .domain([0, d3.max(this.Ydomain)]);
+      .domain([0, d3.max(this.Ydomain)]).nice();
 
     this.xScale = d3.scaleTime()
       .range([30, this.width - 20])
@@ -204,6 +212,54 @@ export class LineChartComponent implements OnInit {
       .call(d3.axisLeft(this.yScale));
     d3.select("g.xaxis")
       .call(d3.axisBottom(this.xScale));
+
+
+
+    d3.select("#linechart g.lines").selectAll('.grid').remove(); // clears brush scrolling element
+
+
+    const gridHorizontal = d3.select("#linechart g.lines").append("g")
+      .attr("class", "grid")
+      .attr("transform", "translate(0," + this.height + ")")
+      .style("stroke-dasharray", ("5,5"))
+      .call(
+        d3.axisBottom(this.xScale)
+          .ticks(10)
+          .tickSize(-this.height + 20)
+          .tickFormat("")
+      )
+    gridHorizontal.selectAll("line")
+      .attr("stroke", '#8097B1')
+      .attr("opacity", 0.3)
+
+
+    const gridVertical = d3.select("#linechart g.lines").append("g")
+      .attr("class", "grid")
+      .attr("transform", "translate(30,0)")
+      .style("stroke-dasharray", ("5,5"))
+      .call(
+        d3.axisLeft(this.yScale)
+          .ticks(4)
+          .tickSize(-this.width + 40)
+          .tickFormat("")
+      )
+
+    gridVertical.selectAll("line, path")
+      .attr("stroke", '#8097B1')
+      .attr("opacity", 0.3)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -235,11 +291,8 @@ export class LineChartComponent implements OnInit {
           .attr("d", d => lineWithDefinedTrue(d.values))
           .attr("opacity", (d) => d.opacity)
           .style('clip-path', 'url(#clip)') //<-- apply clipping
-
           .attr("filter", "url(#dropshadow)")
-
           .attr("stroke", (d, i) => this.colors(i))
-          .style("stroke-linejoin", "round")
           .call(enter => enter.transition(this.t)),
         update => update
           .attr("stroke", (d, i) => this.colors(i))
@@ -325,29 +378,25 @@ export class LineChartComponent implements OnInit {
           .attr("opacity", (d) => { return d.opacity === 1 ? 1 : 0; })
           .style("stroke", (d, i) => d.color)    // set the line colour
           .style("stroke-width", 3.5)
-          .attr("r", 5)
+          .attr("r", 4)
           .attr("cx", d => { return this.xScale(this.parse(d.date)) })
           .attr("cy", d => { return this.yScale(d.value) })
           .on('mouseover', function (d, i) {
-            d3.select(this).transition()
-              .duration('50')
-              .attr('opacity', '.85');
-            div.transition()
-              .duration(50)
-              .style("opacity", 1);
+            if (d.opacity === 1) {
+              div.transition()
+                .duration(50)
+                .style("opacity", 1);
 
-            let tipValue = "<strong>Value</strong>: " + d.value +
-              "<br/> Date: " + d.date +
-              "<br /> Verified: <em>" + d.verified + "</em>";
+              let tipValue = "<strong>Value</strong>: " + d.value +
+                "<br/> Date: " + d.date +
+                "<br /> Verified: <em>" + d.verified + "</em>";
 
-            div.html(tipValue)
-              .style("left", (d3.event.pageX + 10) + "px")
-              .style("top", (d3.event.pageY - 15) + "px");
+              div.html(tipValue)
+                .style("left", (d3.event.pageX + 10) + "px")
+                .style("top", (d3.event.pageY - 15) + "px");
+            }
           })
           .on('mouseout', function (d, i) {
-            d3.select(this).transition()
-              .duration('50')
-              .attr('opacity', '1');
             div.transition()
               .duration('50')
               .style("opacity", 0);
@@ -421,9 +470,8 @@ export class LineChartComponent implements OnInit {
       .attr("class", "brush")
       .attr("width", 100)
       .call(brush)
-      .call(brush.move, [ (this.xScale2.range()[1]/5)*2, (this.xScale2.range()[1]/5)*3]);
+      .call(brush.move, [(this.xScale2.range()[1] / 5) * 2, (this.xScale2.range()[1] / 5) * 3]);
 
-    console.log(this.xScale2.range())
 
 
 

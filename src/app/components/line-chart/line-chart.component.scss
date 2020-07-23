@@ -41,3 +41,19 @@ div.tooltip-donut {
     font-size: 1rem;
 }
  
+
+// bug fix to remove line around outside of chart when adding gridlines
+.grid path {
+    stroke-width: 0;
+}
+
+.axis line,
+.axis path {
+    stroke: #8097B1;
+    opacity: 0.4;
+}
+
+.axis text {
+    fill: #8097B1;
+    opacity: 0.4;
+}
