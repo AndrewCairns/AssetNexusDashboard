@@ -30,7 +30,7 @@ export class LineChartComponent implements OnInit {
   // colorsArray = ["#7400b8", "#5e60ce", "#48bfe3", "#64dfdf", "#80ffdb"]
   // colorsArray = ["red", "green", "blue"]
   colorsArray = ["#2E5BFF", "#8C54FF"]
-  colorsOrg = d3.scaleOrdinal(d3.schemeCategory10);
+  // colorsOrg = d3.scaleOrdinal(d3.schemeCategory10);
   // colorsFull = d3.scaleOrdinal(["#7400b8","#6930c3","#5e60ce","#5390d9","#4ea8de","#48bfe3","#56cfe1","#64dfdf","#72efdd","#80ffdb"]);
   colors = d3.scaleOrdinal(this.colorsArray);
 
@@ -61,7 +61,7 @@ export class LineChartComponent implements OnInit {
 
 
 
-  margin2 = { top: 330, right: 150, bottom: 0, left: 0 };
+  margin2 = { top: 380, right: 150, bottom: 0, left: 30 };
   height2 = 100;
   xAxis2;
   //xscale
@@ -138,10 +138,10 @@ export class LineChartComponent implements OnInit {
       .attr('viewBox', '0 0 ' + 1024 + ' ' + 768)
       .append("g")
       .attr("class", "lines")
-      .attr("transform", "translate(" + this.margin.left + ", " + this.margin.top + ")");
+      .attr("transform", "translate(" + 30 + ", " + this.margin.top + ")");
 
     this.xScale = d3.scaleTime()
-      .range([30, this.width - 20])
+      .range([30, this.width - this.margin.left])
       .domain(d3.extent(this.Xdomain));
 
     this.yScale = d3.scaleLinear()
@@ -159,6 +159,29 @@ export class LineChartComponent implements OnInit {
       .attr("transform", "translate(30,0)")
       .call(d3.axisLeft(this.yScale));
 
+    // AXIS Labels
+    svg.append("text")
+      .attr("class", "x label")
+      .attr("text-anchor", "end")
+      .attr("x", this.width-10)
+      .attr("y", this.height2 + this.margin2.top + 45)
+      .text("Full Date Range (year)");
+
+      svg.append("text")
+      .attr("class", "x label")
+      .attr("text-anchor", "end")
+      .attr("x", this.width-10)
+      .attr("y", this.height + 45)
+      .text("Date (day/month/year)");
+
+    svg.append("text")
+      .attr("class", "y label")
+      .attr("text-anchor", "end")
+      .attr("x", -20)
+      .attr("y", -25)
+      .attr("dy", ".75em")
+      .attr("transform", "rotate(-90)")
+      .text("Value (£/k)");
 
 
     const contextlineGroups = svg.append("g")
@@ -205,7 +228,7 @@ export class LineChartComponent implements OnInit {
       .domain([0, d3.max(this.Ydomain)]).nice();
 
     this.xScale = d3.scaleTime()
-      .range([30, this.width - 20])
+      .range([30, this.width - this.margin.left])
       .domain(d3.extent(this.Xdomain));
 
     d3.select("g.yaxis").transition(100)
@@ -416,7 +439,7 @@ export class LineChartComponent implements OnInit {
 
 
     this.xScale2 = d3.scaleTime()
-      .range([30, this.width - 20])
+      .range([30, this.width - this.margin.left])
       .domain(d3.extent(this.Xdomain));
 
     this.yScale2 = d3.scaleLinear()
