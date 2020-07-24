@@ -163,14 +163,14 @@ export class LineChartComponent implements OnInit {
     svg.append("text")
       .attr("class", "x label")
       .attr("text-anchor", "end")
-      .attr("x", this.width-10)
+      .attr("x", this.width - 30)
       .attr("y", this.height2 + this.margin2.top + 45)
       .text("Full Date Range (year)");
 
-      svg.append("text")
+    svg.append("text")
       .attr("class", "x label")
       .attr("text-anchor", "end")
-      .attr("x", this.width-10)
+      .attr("x", this.width - 30)
       .attr("y", this.height + 45)
       .text("Date (day/month/year)");
 
@@ -238,7 +238,48 @@ export class LineChartComponent implements OnInit {
 
 
 
-    d3.select("#linechart g.lines").selectAll('.grid').remove(); // clears brush scrolling element
+    const chartLegend = d3.select("#linechart g.lines").append("g")
+
+    chartLegend
+      .append('line')
+      .attr('x1', this.width - 290)
+      .attr('y1', 28)
+      .attr('x2', this.width - 250)
+      .attr('y2', 28)
+      .attr("stroke", '#8097B1')
+      .attr("stroke-width", '2px')
+      .style('fill', 'none');
+    chartLegend
+      .append('text')
+      .attr('x', this.width - 245)
+      .attr('y', 32)
+      .text('Validated')
+      .style('fill', '#8097B1');
+
+
+    chartLegend
+      .append('line')
+      .attr('x1', this.width - 160)
+      .attr('y1', 28)
+      .attr('x2', this.width - 120)
+      .attr('y2', 28)
+      .attr("stroke", '#8097B1')
+      .attr("stroke-width", '2px')
+      .style("stroke-dasharray", '8,8')
+      .style('fill', 'none');
+    chartLegend
+      .append('text')
+      .attr('x', this.width - 115)
+      .attr('y', 32)
+      .text('Unvalidated')
+      .style('fill', '#8097B1');
+
+
+
+
+
+
+    d3.select("#linechart g.lines").selectAll('.grid').remove(); // clears grid when updating data ??
 
 
     const gridHorizontal = d3.select("#linechart g.lines").append("g")
