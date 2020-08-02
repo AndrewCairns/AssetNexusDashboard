@@ -1,0 +1,39 @@
+@import "../../../assets/styles/Tools/variables";
+
+table {
+    border-spacing: 0px 1rem;
+    overflow-x: auto;
+}  
+
+tr:not(:first-child) {
+    background: #fff;
+}
+
+tr:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+th {
+    padding: 0px 30px;
+    text-align: left;
+}
+
+td {
+    padding: 25px 30px;
+    text-align: left;
+}
+
+td span {
+    display: block;
+    color: rgba(0,0,0, 0.4);
+}
+
+td img {
+    max-width: 2rem;
+}
+
+td:first-child,
+td:last-child {
+    text-align: center;
+    color: $brand-color;
+}

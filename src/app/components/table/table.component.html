@@ -1,0 +1,25 @@
+<table>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Role</th>
+      <th>Email</th>
+      <th>Phone No.</th>
+      <th>Approved</th>
+    </tr>
+
+    <tr *ngFor="let party of parties">
+      <td><img src="{{party.avatar}}" /></td>
+      <td>{{party.name}}
+          <span>{{party.id}}</span>
+      </td>
+      <td>{{party.role}}</td>
+      <td>{{party.email}}</td>
+      <td>{{party.phoneNumber}}</td>
+      <td>{{ party.approved === true ? '&#10004;' : '&#10006;' }}</td>
+    </tr>
+
+
+
+</table>
+  

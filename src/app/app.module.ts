@@ -14,6 +14,8 @@ import { LineChartComponent } from './components/line-chart/line-chart.component
 import { SelectComponent } from './components/select/select.component';
 import { FormsModule } from '@angular/forms';
 import { SelectorButtonComponent } from './components/selector-button/selector-button.component';
+import { PortfolioComponent } from './views/portfolio/portfolio.component';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { SelectorButtonComponent } from './components/selector-button/selector-b
     TimelineComponent,
     LineChartComponent,
     SelectComponent,
-    SelectorButtonComponent
+    SelectorButtonComponent,
+    PortfolioComponent,
+    TableComponent
   ],
   exports: [
     IconComponent
