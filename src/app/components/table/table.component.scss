@@ -1,15 +1,19 @@
 @import "../../../assets/styles/Tools/variables";
 
-table {
-    border-spacing: 0px 1rem;
+.table-container {
     overflow-x: auto;
+}
+
+table {
+    max-width: 100%;
+    border-spacing: 0px 1rem;
 }  
 
 tr:not(:first-child) {
     background: #fff;
 }
 
-tr:hover {
+tr:hover:not(:first-child) {
     background: rgba(255, 255, 255, 0.4);
 }
 
@@ -36,4 +40,14 @@ td:first-child,
 td:last-child {
     text-align: center;
     color: $brand-color;
+}
+
+td:first-child {
+    display: flex;
+}
+
+td:first-child > .name-content {
+    padding-left: 1rem;
+    flex-direction: column;
+    text-align: left;
 }

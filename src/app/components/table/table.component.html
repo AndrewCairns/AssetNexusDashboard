@@ -1,17 +1,20 @@
-<table>
+<div class="table-container">
+  <table id="partiesTable">
     <tr>
       <th></th>
-      <th>Name</th>
-      <th>Role</th>
+      <th (click)="sortTable(0)">Role</th>
       <th>Email</th>
       <th>Phone No.</th>
       <th>Approved</th>
     </tr>
 
     <tr *ngFor="let party of parties">
-      <td><img src="{{party.avatar}}" /></td>
-      <td>{{party.name}}
+      <td>
+        <img src="{{party.avatar}}" />
+        <div class="name-content">
+          <strong>{{party.name}}</strong>
           <span>{{party.id}}</span>
+        </div>
       </td>
       <td>{{party.role}}</td>
       <td>{{party.email}}</td>
@@ -19,7 +22,5 @@
       <td>{{ party.approved === true ? '&#10004;' : '&#10006;' }}</td>
     </tr>
 
-
-
-</table>
-  
+  </table>
+</div>
