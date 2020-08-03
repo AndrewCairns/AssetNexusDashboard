@@ -31,6 +31,8 @@
     "mkdirp": "^1.0.4",
     "rxjs": "~6.5.4",
     "svgstore": "^3.0.0-2",
+    "tablesort": "^5.2.1",
+    "tablesorter": "^2.31.3",
     "tslib": "^1.10.0",
     "webpack": "^4.43.0",
     "webpack-svgstore-plugin": "^4.1.0",
