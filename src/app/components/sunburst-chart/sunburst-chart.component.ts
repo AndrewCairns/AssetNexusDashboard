@@ -11,17 +11,18 @@ export class SunburstChartComponent implements OnInit {
   @Input() transitionTime: number;
   @Input() ChartData: any;
 
-  hostElement;    // Native element hosting the SVG container
   svg;            // Top level SVG element
   g;              // SVG Group element
   width = 932;
   height = 932;
   radius = this.width / 6;
   format = d3.format(",d");
+  colorsArray = [ "#5e60ce", "#48bfe3", "#64dfdf"]
+  // colorsArray = ["#2E5BFF", "#8C54FF"]
 
   color = d3.scaleOrdinal()
       .domain([0, this.ChartData+1])
-      .range(["#FF6700", "#EBEBEB", "#004E98"])
+      .range(this.colorsArray)
 
   arc = d3.arc()
     .startAngle(d => d.x0)
@@ -47,9 +48,7 @@ export class SunburstChartComponent implements OnInit {
 
 
 
-  constructor(private elRef: ElementRef) {
-    this.hostElement = this.elRef.nativeElement;
-  }
+  constructor(private elRef: ElementRef) { }
 
 
 
@@ -65,7 +64,7 @@ export class SunburstChartComponent implements OnInit {
   
     root.each(d => { d.current = d });
     
-    const svg = d3.select(this.hostElement).append('svg')
+    const svg = d3.select('#sunburstChart')
         .attr("viewBox", [0, 0, this.width, this.width])
         .style("font", "10px sans-serif");
        
@@ -148,8 +147,6 @@ export class SunburstChartComponent implements OnInit {
   
       const t = g.transition().duration(transitionTime);
       
-      console.log(transitionTime)
-
       // Transition the data on all arcs, even the ones that aren’t visible,
       // so that if this transition is interrupted, entering arcs will start
       // the next transition from the desired position.

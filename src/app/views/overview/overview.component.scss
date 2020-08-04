@@ -1,0 +1,23 @@
+.NPV {
+    text-align: center;
+}
+
+.welcome-block img {
+    max-width: 100%;
+}
+
+.NPV-value {
+    margin: 0px;
+}
+
+h2.NPV-value {
+    font-size: 2rem;
+    margin-top: -20px;
+}
+
+@media only screen and (max-width: 1000px) {
+    h2.NPV-value {
+        font-size: 1rem;
+        margin-top: 0px;
+    }
+}

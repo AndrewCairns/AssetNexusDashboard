@@ -1,8 +1,64 @@
-<section class="grid">
-    <div class="grid-item">
-        <h4>Value Breakdown</h4>     
-        <div class="chart">
-            <app-sunburst-chart [ChartData]="sunburst_NetPresentValue" [transitionTime]="1000"></app-sunburst-chart>
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <section class="dashboard-module">
+            <div class="welcome-block">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="NPV">
+                            <img src="../../../assets/images/welcomeArc.png" />
+                            <h2 class="NPV-value">£180k</h2>
+                            <h4 class="NPV-value">Net Present Value</h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <h2>Welcome to <br /> Asset Nexus</h2>
+                        <p>As of 12 May 2020, your current Net Present Value is <strong>£180,000</strong>. Risen
+                            <em>4%</em> from last login.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <section class="dashboard-module">
+                    Will
+                </section>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <section class="dashboard-module">
+                    Will
+                </section>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <section class="dashboard-module">
+                    Will
+                </section>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <section class="dashboard-module">
+                    Will
+                </section>
+            </div>
         </div>
     </div>
-</section>
+</div>
+
+
+
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <section class="dashboard-module">
+            <div class="row center-xs center-sm center-md center-lg">
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                    <app-sunburst-chart [ChartData]="sunburst_NetPresentValue" [transitionTime]="1000">
+                    </app-sunburst-chart>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
