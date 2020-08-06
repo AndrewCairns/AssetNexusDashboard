@@ -78,3 +78,13 @@
     width: remify(34);
     height: remify(34);
 }
+
+.icon-color-brand * {
+    fill: $brand-color;    
+}
+.icon-color-brand-alt * {
+    fill: $brand-color--alt;    
+}
+.icon-color-base-grey * {
+    fill: $base-grey;    
+}

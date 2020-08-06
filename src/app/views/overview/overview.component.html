@@ -1,9 +1,9 @@
 <div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-        <section class="dashboard-module">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <section class="dashboard-module box-row">
             <div class="welcome-block">
                 <div class="row">
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 vertical-align">
                         <div class="NPV">
                             <img src="../../../assets/images/welcomeArc.png" />
                             <h2 class="NPV-value">£180k</h2>
@@ -19,35 +19,18 @@
             </div>
         </section>
     </div>
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
         <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <section class="dashboard-module">
-                    Will
-                </section>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <section class="dashboard-module">
-                    Will
-                </section>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <section class="dashboard-module">
-                    Will
-                </section>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <section class="dashboard-module">
-                    Will
+            <div *ngFor="let metric of metric_block_data" class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <section class="dashboard-module box-row">
+                    <app-info-block [icon]="metric.icon" [value]="metric.value" [subtitle]="metric.subtitle" [iconColorClass]="metric.iconColorClass"></app-info-block>
                 </section>
             </div>
         </div>
     </div>
+
+
 </div>
-
-
 
 
 <div class="row">

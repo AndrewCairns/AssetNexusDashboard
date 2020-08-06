@@ -27,7 +27,6 @@ body {
     padding: 25px;
 }
 
-.box-row,
 .box-first,
 .box-nested,
 .box-large,
@@ -60,4 +59,9 @@ body {
 p {
   color: $base-grey;
   line-height: 1.5rem;
+}
+
+.vertical-align {
+  display: flex;
+  align-items: center;
 }

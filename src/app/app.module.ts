@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { SelectorButtonComponent } from './components/selector-button/selector-button.component';
 import { PortfolioComponent } from './views/portfolio/portfolio.component';
 import { TableComponent } from './components/table/table.component';
+import { InfoBlockComponent } from './components/info-block/info-block.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { TableComponent } from './components/table/table.component';
     SelectComponent,
     SelectorButtonComponent,
     PortfolioComponent,
-    TableComponent
+    TableComponent,
+    InfoBlockComponent
   ],
   exports: [
     IconComponent
