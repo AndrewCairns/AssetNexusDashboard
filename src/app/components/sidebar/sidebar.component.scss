@@ -1,3 +1,5 @@
+@import '../../../assets/styles/Tools/variables';
+
 aside {
     background-color: white;
     height: 100%;
@@ -35,8 +37,9 @@ aside nav ul li {
     justify-content: center;
 }
 
-aside nav ul li img:hover {
-    filter: invert(1);
+aside nav ul li:hover {
+    // filter: invert(1);
+    fill: $brand-color;
 }
 
 

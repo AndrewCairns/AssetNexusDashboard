@@ -1,25 +1,33 @@
 <aside>
-    <div class="sidebar-menu-icon">
+    <!-- <div class="sidebar-menu-icon">
         <app-icon [id]="'menuicon'" [classList]="['icon-size-16']"></app-icon>
-    </div>
+    </div> -->
     <nav>
         <ul>
-            <li>
-                <!-- <span>Dashboard</span> -->
-                <app-icon [id]="'dashboard'" [classList]="['icon-size-16']"></app-icon>
-            </li>
-            <li>
-                <!-- <span>Your Will</span> -->
-                <app-icon [id]="'will'" [classList]="['icon-size-16']"></app-icon>
-            </li>
-            <li>
-                <!-- <span>Portfolio</span> -->
-                <app-icon [id]="'portfolio'" [classList]="['icon-size-16']"></app-icon>
-            </li>
-            <li>
-                <!-- <span>Settings</span> -->
-                <app-icon [id]="'settings'" [classList]="['icon-size-16']"></app-icon>
-            </li>
+            <a routerLink="/overview">
+                <li>
+                    <!-- <span>Dashboard</span> -->
+                    <app-icon [id]="'dashboard'" [classList]="['icon-size-16']"></app-icon>
+                </li>
+            </a>
+            <a routerLink="/timeline">
+                <li>
+                    <!-- <span>Settings</span> -->
+                    <app-icon [id]="'dynamic'" [classList]="['icon-size-16']"></app-icon>
+                </li>
+            </a>
+            <a routerLink="/portfolio">
+                <li>
+                    <!-- <span>Your Will</span> -->
+                    <app-icon [id]="'will'" [classList]="['icon-size-16']"></app-icon>
+                </li>
+            </a>
+            <a routerLink="/documentation">
+                <li>
+                    <!-- <span>Portfolio</span> -->
+                    <app-icon [id]="'portfolio'" [classList]="['icon-size-16']"></app-icon>
+                </li>
+            </a>
         </ul>
     </nav>
 </aside>
