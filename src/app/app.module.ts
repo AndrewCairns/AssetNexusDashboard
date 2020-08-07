@@ -17,6 +17,7 @@ import { SelectorButtonComponent } from './components/selector-button/selector-b
 import { PortfolioComponent } from './views/portfolio/portfolio.component';
 import { TableComponent } from './components/table/table.component';
 import { InfoBlockComponent } from './components/info-block/info-block.component';
+import { DocumentationComponent } from './views/documentation/documentation.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { InfoBlockComponent } from './components/info-block/info-block.component
     SelectorButtonComponent,
     PortfolioComponent,
     TableComponent,
-    InfoBlockComponent
+    InfoBlockComponent,
+    DocumentationComponent
   ],
   exports: [
     IconComponent
