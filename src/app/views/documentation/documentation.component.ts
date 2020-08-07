@@ -30,7 +30,7 @@ export class DocumentationComponent implements OnInit {
     {
       "id": "0003",
       "name": "Andrew",
-      "avatar": "../../assets/avatars/Gavin.png",
+      "avatar": "assets/avatars/Gavin.png",
       "role": "Beneficiary",
       "email": "andrew@gmail.com",
       "phone": "079279345343",
@@ -39,7 +39,7 @@ export class DocumentationComponent implements OnInit {
     {
       "id": "0001",
       "name": "Gavin",
-      "avatar": "../../assets/avatars/Gavin.png",
+      "avatar": "assets/avatars/Gavin.png",
       "role": "Trusted advisor",
       "email": "gavin@gmail.com",
       "phone": "07345345513",
@@ -48,7 +48,7 @@ export class DocumentationComponent implements OnInit {
     {
       "id": "0002",
       "name": "Roger",
-      "avatar": "../../assets/avatars/Gavin.png",
+      "avatar": "assets/avatars/Gavin.png",
       "role": "Executor",
       "email": "roger@gmail.com",
       "phone": "07927453455",
@@ -57,7 +57,7 @@ export class DocumentationComponent implements OnInit {
     {
       "id": "0003",
       "name": "Andrew",
-      "avatar": "../../assets/avatars/Gavin.png",
+      "avatar": "assets/avatars/Gavin.png",
       "role": "Beneficiary",
       "email": "andrew@gmail.com",
       "phone": "079279345343",
@@ -66,7 +66,7 @@ export class DocumentationComponent implements OnInit {
     {
       "id": "0001",
       "name": "Gavin",
-      "avatar": "../../assets/avatars/Gavin.png",
+      "avatar": "assets/avatars/Gavin.png",
       "role": "Trusted advisor",
       "email": "gavin@gmail.com",
       "phone": "07345345513",
@@ -75,7 +75,7 @@ export class DocumentationComponent implements OnInit {
     {
       "id": "0002",
       "name": "Roger",
-      "avatar": "../../assets/avatars/Gavin.png",
+      "avatar": "assets/avatars/Gavin.png",
       "role": "Executor",
       "email": "roger@gmail.com",
       "phone": "07927453455",
@@ -84,7 +84,7 @@ export class DocumentationComponent implements OnInit {
     {
       "id": "0003",
       "name": "Andrew",
-      "avatar": "../../assets/avatars/Gavin.png",
+      "avatar": "assets/avatars/Gavin.png",
       "role": "Beneficiary",
       "email": "andrew@gmail.com",
       "phone": "079279345343",
