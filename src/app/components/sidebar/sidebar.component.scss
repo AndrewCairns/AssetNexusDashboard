@@ -38,7 +38,10 @@ aside nav ul li {
 }
 
 aside nav ul li:hover {
-    // filter: invert(1);
+    fill: $brand-color;
+}
+
+aside nav ul a.is-active li {
     fill: $brand-color;
 }
 

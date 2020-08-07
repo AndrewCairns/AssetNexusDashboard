@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DocumentationComponent implements OnInit {
 
+  headers = ["id", "role", "email", "phone", "approved"]
   parties = [
     {
       "id": "0001",

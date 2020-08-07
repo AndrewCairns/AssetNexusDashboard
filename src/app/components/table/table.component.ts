@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { KeyValue } from '@angular/common';
 
 import * as Tablesort from 'tablesort';
 
@@ -12,15 +13,14 @@ import * as Tablesort from 'tablesort';
 export class TableComponent implements OnInit {
 
   @Input() parties: string;
+  @Input() headers: string[];
   el = document.getElementById('partiesTable');
   @ViewChild('partiesTable') partiesTable: ElementRef;
-  keys;
 
   constructor() { }
 
 
   ngOnInit(): void {
-    this.keys = Object.keys(this.parties[0]); // Get the column names
   }
 
   ngAfterViewInit() {
@@ -29,6 +29,11 @@ export class TableComponent implements OnInit {
 
   sort() {
     new Tablesort(this.partiesTable.nativeElement);
+  }
+
+  // Preserve original property order
+  originalOrder = (a: KeyValue<number, string>, b: KeyValue<number, string>): number => {
+    return 0;
   }
 
 

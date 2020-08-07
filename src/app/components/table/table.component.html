@@ -2,26 +2,34 @@
   <table #partiesTable id="partiesTable">
     <thead>
       <tr>
-        <th></th>
-        <th>Role</th>
-        <th>Email</th>
-        <th>Phone No.</th>
-        <th>Approved</th>
+        <th *ngFor="let header of headers">
+          {{header}}
+        </th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let party of parties">
-        <td>
-          <img src="{{party.avatar}}" />
-          <div class="name-content">
-            <strong>{{party.name}}</strong>
-            <span>{{party.id}}</span>
-          </div>
-        </td>
-        <td>{{party.role}}</td>
-        <td>{{party.email}}</td>
-        <td>{{party.phone}}</td>
-        <td>{{ party.approved === true ? '&#10004;' : '&#10006;' }}</td>
+        <ng-container *ngFor="let header of headers">
+          <ng-container *ngIf="party[header] || party[header] === false">
+            <td *ngIf="header === 'id';else next_cell">
+              <img src="{{party.avatar}}" />
+              <div class="name-content">
+                <strong>{{party.name}}</strong>
+                <span [ngClass]="party.name ? 'half-opacity base-color-black block' : 'none'">{{party.id}}</span>
+              </div>
+            </td>
+            <ng-template #next_cell>
+              <td *ngIf="header === 'approved';else other_cells" class="pl-4">
+                {{ party[header] === true ? '&#10004;' : '&#10006;' }}
+              </td>  
+            </ng-template>
+            <ng-template #other_cells>
+              <td>
+                {{party[header]}}
+              </td>  
+            </ng-template>
+          </ng-container>
+        </ng-container>
       </tr>
     </tbody>
   </table>

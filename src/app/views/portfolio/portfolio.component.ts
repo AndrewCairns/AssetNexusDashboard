@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PortfolioComponent implements OnInit {
 
+  headers = ["id", "type", "value", "date"];
   parties = [
     {
       "id": "Zurich",
