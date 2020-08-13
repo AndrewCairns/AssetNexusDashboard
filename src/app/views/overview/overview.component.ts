@@ -11,10 +11,10 @@ export class OverviewComponent implements OnInit {
   status: boolean = false;
 
   metric_block_data = [
-    { "value": "3", "subtitle": "Will revisions", "icon": "calendar", "iconColorClass": "icon-color-brand-alt" },
-    { "value": "4", "subtitle": "Trusted Friends", "icon": "fingerprint", "iconColorClass": "icon-color-brand-alt" },
-    { "value": "1", "subtitle": "Trustees", "icon": "check", "iconColorClass": "icon-color-brand-alt" },
-    { "value": "2", "subtitle": "Beneficiaries", "icon": "portfolio", "iconColorClass": "icon-color-brand-alt" },
+    { "value": "180k", "subtitle": "Asset Total", "icon": "will", "iconColorClass": "icon-color-brand-alt" },
+    { "value": "-123k", "subtitle": "Total Debt ", "icon": "will", "iconColorClass": "icon-color-brand-alt" },
+    { "value": "80k", "subtitle": "Insurance Total", "icon": "will", "iconColorClass": "icon-color-brand-alt" },
+    { "value": "223k", "subtitle": "Net Present Value", "icon": "portfolio", "iconColorClass": "icon-color-brand-alt" },
   ]
 
 

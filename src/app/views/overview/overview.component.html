@@ -3,17 +3,15 @@
         <section class="dashboard-module box-row">
             <div class="welcome-block">
                 <div class="row">
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 vertical-align">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 vertical-center horizontal-center">
                         <div class="NPV">
-                            <img src="assets/images/welcomeArc.png" />
-                            <h2 class="NPV-value">£180k</h2>
+                            <h2 class="NPV-value">{{metric_block_data.slice(-1)[0].value}}</h2>
                             <h4 class="NPV-value">Net Present Value</h4>
                         </div>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                         <h2>Welcome to <br /> Asset Nexus</h2>
-                        <p>As of 12 May 2020, your current Net Present Value is <strong>£180,000</strong>. Risen
-                            <em>4%</em> from last login.</p>
+                        <p>As of 12 May 2020, your current Net Present Value is <strong>{{metric_block_data.slice(-1)[0].value}}</strong>.
                     </div>
                 </div>
             </div>

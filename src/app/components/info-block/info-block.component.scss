@@ -28,3 +28,11 @@
 .info-block--content > * {
     margin: 0px;
 }
+
+.info-block--content h1.negative {
+    color: $base-red;
+}
+
+.info-block--content h1.positive {
+    color: $base-green;
+}
