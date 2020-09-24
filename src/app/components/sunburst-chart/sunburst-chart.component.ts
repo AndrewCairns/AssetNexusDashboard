@@ -48,7 +48,9 @@ export class SunburstChartComponent implements OnInit {
 
 
 
-  constructor(private elRef: ElementRef) { }
+  constructor(private elRef: ElementRef) { 
+    console.log(this.elRef.nativeElement);
+  }
 
 
 
@@ -64,7 +66,7 @@ export class SunburstChartComponent implements OnInit {
   
     root.each(d => { d.current = d });
     
-    const svg = d3.select('#sunburstChart')
+    const svg = d3.select(this.elRef.nativeElement).append('svg')
         .attr("viewBox", [0, 0, this.width, this.width])
         .style("font", "10px sans-serif");
        

@@ -10,7 +10,8 @@ export class InfoBlockComponent implements OnInit {
   @Input() value:string;
   @Input() subtitle:string;
   @Input() iconColorClass:string;
-
+  @Input() valueState: boolean = false;
+  
   constructor() { }
 
   ngOnInit(): void {

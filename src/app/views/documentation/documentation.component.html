@@ -49,5 +49,8 @@
 </div>
 
 
+<app-select-will [ChartData]="willData" (selectboxValueSelected)="childEventClicked($event)" ></app-select-will>
+
+
 <h1>Concerned Parties</h1>
 <app-table [parties]="parties" [headers]="headers"></app-table>

@@ -48,12 +48,12 @@ export class PortfolioComponent implements OnInit {
   ]
 
   metric_block_data = [
-    { "value": "3", "subtitle": "Debts", "icon": "calendar", "iconColorClass": "icon-color-brand-alt" },
-    { "value": "12", "subtitle": "Assets", "icon": "check", "iconColorClass": "icon-color-brand-alt" },
-    { "value": "4", "subtitle": "Insurance Policies", "icon": "will", "iconColorClass": "icon-color-brand-alt" },
-    { "value": "£180k", "subtitle": "Current Net Value", "icon": "check", "iconColorClass": "icon-color-brand-alt" },
-    { "value": "£120k", "subtitle": "Post Death Net Value", "icon": "check", "iconColorClass": "icon-color-brand-alt" },
-    { "value": "£10k", "subtitle": "Total debt", "icon": "ban", "iconColorClass": "icon-color-brand-alt" },
+    { "value": "3", "subtitle": "Debts", "icon": "calendar", "iconColorClass": "icon-color-brand" },
+    { "value": "12", "subtitle": "Assets", "icon": "check", "iconColorClass": "icon-color-brand" },
+    { "value": "4", "subtitle": "Insurance Policies", "icon": "will", "iconColorClass": "icon-color-brand" },
+    { "value": "£180k", "subtitle": "Current Net Value", "icon": "check", "iconColorClass": "icon-color-brand" },
+    { "value": "£120k", "subtitle": "Post Death Net Value", "icon": "check", "iconColorClass": "icon-color-brand" },
+    { "value": "£10k", "subtitle": "Total debt", "icon": "ban", "iconColorClass": "icon-color-brand" },
   ]
 
   constructor() { }

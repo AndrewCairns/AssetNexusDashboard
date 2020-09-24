@@ -29,6 +29,7 @@
     "d3-line-chunked": "^1.4.1",
     "d3-scale-chromatic": "^1.5.0",
     "mkdirp": "^1.0.4",
+    "ng2-pdf-viewer": "^6.3.2",
     "rxjs": "~6.5.4",
     "svgstore": "^3.0.0-2",
     "tablesort": "^5.2.1",

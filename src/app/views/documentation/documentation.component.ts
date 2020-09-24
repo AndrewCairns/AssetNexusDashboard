@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DocumentationComponent implements OnInit {
 
-  headers = ["id", "role", "email", "phone", "approved"]
+  headers = ["id", "role", "email", "phone", "signed up", "last signed in"]
   parties = [
     {
       "id": "0001",
@@ -16,7 +16,8 @@ export class DocumentationComponent implements OnInit {
       "role": "Trusted advisor",
       "email": "gavin@gmail.com",
       "phone": "07345345513",
-      "approved": true
+      "signed up": true,
+      "last signed in": "04/03/2020"
     },
     {
       "id": "0002",
@@ -25,7 +26,8 @@ export class DocumentationComponent implements OnInit {
       "role": "Executor",
       "email": "roger@gmail.com",
       "phone": "07927453455",
-      "approved": false
+      "signed up": true,
+      "last signed in": "04/03/2020"
     },
     {
       "id": "0003",
@@ -34,7 +36,8 @@ export class DocumentationComponent implements OnInit {
       "role": "Beneficiary",
       "email": "andrew@gmail.com",
       "phone": "079279345343",
-      "approved": false
+      "signed up": true,
+      "last signed in": "04/03/2020"
     },
     {
       "id": "0001",
@@ -43,7 +46,8 @@ export class DocumentationComponent implements OnInit {
       "role": "Trusted advisor",
       "email": "gavin@gmail.com",
       "phone": "07345345513",
-      "approved": true
+      "signed up": true,
+      "last signed in": "04/03/2020"
     },
     {
       "id": "0002",
@@ -52,7 +56,8 @@ export class DocumentationComponent implements OnInit {
       "role": "Executor",
       "email": "roger@gmail.com",
       "phone": "07927453455",
-      "approved": true
+      "signed up": true,
+      "last signed in": "04/03/2020"
     },
     {
       "id": "0003",
@@ -61,7 +66,8 @@ export class DocumentationComponent implements OnInit {
       "role": "Beneficiary",
       "email": "andrew@gmail.com",
       "phone": "079279345343",
-      "approved": false
+      "signed up": true,
+      "last signed in": "04/03/2020"
     },
     {
       "id": "0001",
@@ -70,7 +76,8 @@ export class DocumentationComponent implements OnInit {
       "role": "Trusted advisor",
       "email": "gavin@gmail.com",
       "phone": "07345345513",
-      "approved": true
+      "signed up": true,
+      "last signed in": "04/03/2020"
     },
     {
       "id": "0002",
@@ -79,7 +86,8 @@ export class DocumentationComponent implements OnInit {
       "role": "Executor",
       "email": "roger@gmail.com",
       "phone": "07927453455",
-      "approved": false
+      "signed up": true,
+      "last signed in": "04/03/2020"
     },
     {
       "id": "0003",
@@ -88,20 +96,42 @@ export class DocumentationComponent implements OnInit {
       "role": "Beneficiary",
       "email": "andrew@gmail.com",
       "phone": "079279345343",
-      "approved": true
+      "signed up": true,
+      "last signed in": "04/03/2020"
     },
+  ]
+
+  willData = [
+    {
+      "name": 'Will 1',
+      "link": '../../../assets/will-1.pdf', 
+    },
+    {
+      "name": 'Will 2',
+      "link": '../../../assets/will-2.pdf', 
+    },
+    {
+      "name": 'Will 3',
+      "link": '../../../assets/will-3.pdf', 
+    }
   ]
 
   metric_block_data = [
-    { "value": "1", "subtitle": "Executor", "icon": "mail", "iconColorClass": "icon-color-brand-alt" },
-    { "value": "3", "subtitle": "Trustees", "icon": "energy", "iconColorClass": "icon-color-brand-alt" },
-    { "value": "4", "subtitle": "Trusted Friends", "icon": "fingerprint", "iconColorClass": "icon-color-brand-alt" },
+    { "value": "1", "subtitle": "Executor", "icon": "mail", "iconColorClass": "icon-color-brand" },
+    { "value": "3", "subtitle": "Trustees", "icon": "energy", "iconColorClass": "icon-color-brand" },
+    { "value": "4", "subtitle": "Trusted Friends", "icon": "fingerprint", "iconColorClass": "icon-color-brand" },
   ]
 
+  public selctorClickedEvent: Event;
 
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  childEventClicked(event) {
+    this.selctorClickedEvent = event;
+  }
+
 
 }

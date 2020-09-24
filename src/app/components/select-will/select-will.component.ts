@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import data from './../../../datastore/linechartData.json';
+import data from '../../../datastore/linechartData.json';
 
 @Component({
-  selector: 'app-select',
-  templateUrl: './select.component.html',
-  styleUrls: ['./select.component.scss']
+  selector: 'app-select-will',
+  templateUrl: './select-will.component.html',
+  styleUrls: ['./select-will.component.scss']
 })
-export class SelectComponent implements OnInit {
+export class SelectWillComponent implements OnInit {
 
   @Input() ChartData: any;
   @Output() selectboxValueSelected = new EventEmitter();
