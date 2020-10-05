@@ -5,7 +5,8 @@ module.exports = {
         new SvgStore({
             svgoOptions: {
                 plugins: [
-                    { removeTitle: true }
+                    { removeTitle: true },
+                    { path: './../../src/assests/icons/*.svg', name: 'assets/icons/sprite.svg'}
                 ]
             },
             prefix: 'icon-'
